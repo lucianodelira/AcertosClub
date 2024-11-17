@@ -1,0 +1,271 @@
+<!DOCTYPE html> 
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Jogo das Minas com Pix</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            text-align: center;
+            padding: 20px;
+        }
+        #game-board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .cell {
+            width: 100px;
+            height: 100px;
+            background-color: #cc6611;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .cell:hover {
+            background-color: #ff9900;
+        }
+        .revealed {
+            background-color: red;
+            color: #ffffff;
+            pointer-events: none;
+        }
+        .prize {
+            background-color: gold;
+            color: black;
+            font-size: 30px;
+        }
+        #pix-button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        #pix-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        #timer {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+        #qrcode {
+            display: none;
+            margin: 20px auto;
+            width: 200px;
+            height: 200px;
+        }
+        #pix-key {
+            display: none;
+            margin-top: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+        #win-message, #lose-message {
+            display: none;
+            font-size: 30px;
+            margin-top: 20px;
+        }
+        #win-message {
+            color: green;
+        }
+        #lose-message {
+            color: red;
+            cursor: pointer;
+        }
+        #game-liberado {
+            display: none;
+            font-size: 24px;
+            margin-top: 20px;
+            color: #4caf50;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Jogo das Minas com Pix</h1>
+    <h1>Premios que vão de 2,00 reais até 200,00 reais</h1>
+    <p>Clique no botão abaixo para gerar uma cobrança Pix e liberar tentativas!</p>
+    <select id="credit-menu">
+        <option value="1">3 créditos por R$1</option>
+        <option value="3">4 créditos por R$3</option>
+        <option value="5">5 créditos por R$5</option>
+    </select>
+    <button id="pix-button">Gerar QR Code Pix</button>
+    <div id="timer"></div>
+    <img id="qrcode" alt="QR Code Pix"/>
+    <div id="pix-key" title="Clique para copiar a chave Pix"></div>
+    <div id="game-liberado">🎉 Jogo liberado! 🎉</div>
+    <div id="win-message">🎉 Você ganhou! 🎉</div>
+    <div id="lose-message">😞 Você perdeu! Clique aqui para reiniciar o jogo.</div>
+
+    <div id="game-board"></div>
+
+    <script>
+        const board = document.getElementById('game-board');
+        const pixButton = document.getElementById('pix-button');
+        const timerDisplay = document.getElementById('timer');
+        const qrcodeImg = document.getElementById('qrcode');
+        const pixKeyDisplay = document.getElementById('pix-key');
+        const winMessage = document.getElementById('win-message');
+        const loseMessage = document.getElementById('lose-message');
+        const gameLiberado = document.getElementById('game-liberado');
+        const totalCells = 12;
+        let prizeIndex;
+        let attempts;
+        let credits;
+        let countdownInterval;
+        let paymentId = null;
+        let pixKey = '';
+
+        function resetGame() {
+            prizeIndex = Math.floor(Math.random() * totalCells);
+            attempts = 0;
+            credits = 0;
+            pixButton.disabled = false;
+            timerDisplay.innerHTML = '';
+            qrcodeImg.style.display = 'none';
+            pixKeyDisplay.style.display = 'none';
+            winMessage.style.display = 'none';
+            loseMessage.style.display = 'none';
+            gameLiberado.style.display = 'none';
+            clearInterval(countdownInterval);
+            createBoard();
+        }
+
+        function createBoard() {
+            board.innerHTML = '';
+            for (let i = 0; i < totalCells; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'cell';
+                cell.dataset.index = i;
+
+                cell.style.pointerEvents = 'none';
+
+                cell.addEventListener('click', function () {
+                    if (attempts > 0) {
+                        attempts--;
+                        if (parseInt(cell.dataset.index) === prizeIndex) {
+                            cell.classList.add('prize');
+                            cell.innerHTML = '🏆';
+                            winMessage.style.display = 'block';
+                            setTimeout(() => {
+                                window.location.href = 'https://app.acerto.club';
+                            }, 3000);
+                            disableBoard();
+                        } else {
+                            cell.classList.add('revealed');
+                            cell.innerHTML = '❌';
+                        }
+                        if (attempts === 0) {
+                            revealBoard();
+                        }
+                    }
+                });
+
+                board.appendChild(cell);
+            }
+        }
+
+        function enableBoard() {
+            const cells = document.querySelectorAll('.cell');
+            cells.forEach(cell => cell.style.pointerEvents = 'auto');
+            qrcodeImg.style.display = 'none';
+            timerDisplay.style.display = 'none';
+            gameLiberado.style.display = 'block';
+        }
+
+        function disableBoard() {
+            const cells = document.querySelectorAll('.cell');
+            cells.forEach(cell => cell.style.pointerEvents = 'none');
+        }
+
+        function revealBoard() {
+            loseMessage.style.display = 'block';
+            const cells = document.querySelectorAll('.cell');
+            cells.forEach((cell, index) => {
+                if (index == prizeIndex) {
+                    cell.classList.add('prize');
+                    cell.innerHTML = '🏆';
+                } else {
+                    cell.classList.add('revealed');
+                    cell.innerHTML = '❌';
+                }
+            });
+            disableBoard();
+        }
+
+        loseMessage.addEventListener('click', resetGame);
+
+        pixButton.addEventListener('click', function () {
+            const selectedCredit = parseInt(document.getElementById('credit-menu').value);
+            google.script.run.withSuccessHandler(function(data) {
+                qrcodeImg.src = `data:image/png;base64,${data.qr_code_base64}`;
+                qrcodeImg.style.display = 'block';
+                paymentId = data.payment_id;
+                pixKey = data.pix_key;
+                pixKeyDisplay.innerHTML = pixKey;
+                pixKeyDisplay.style.display = 'block';
+                startCountdown(60);
+                pixButton.disabled = true;
+
+                navigator.clipboard.writeText(pixKey).then(() => {
+                    alert('Chave Pix copiada: ' + pixKey);
+                });
+
+                credits = selectedCredit === 1 ? 3 : selectedCredit === 3 ? 4 : 5;
+                attempts = credits;
+                timerDisplay.innerHTML = `Você tem ${credits} tentativas!`;
+                checkPaymentStatus(paymentId);
+            }).criarCobrancaPix(selectedCredit);
+        });
+
+        function startCountdown(seconds) {
+            let timeLeft = seconds;
+            timerDisplay.innerHTML = `Aguarde ${timeLeft} segundos para concluir o pagamento...`;
+
+            countdownInterval = setInterval(() => {
+                timeLeft--;
+                timerDisplay.innerHTML = `Aguarde ${timeLeft} segundos para concluir o pagamento...`;
+
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    timerDisplay.innerHTML = 'Tempo expirado. Por favor, gere um novo pagamento Pix.';
+                    resetGame();
+                }
+            }, 1000);
+        }
+
+        function checkPaymentStatus(paymentId) {
+            if (paymentId) {
+                const intervalId = setInterval(() => {
+                    google.script.run.withSuccessHandler(function(status) {
+                        if (status === 'Pagamento aprovado! Tentativas liberadas.') {
+                            clearInterval(intervalId);
+                            enableBoard();
+                            timerDisplay.innerHTML = `Você tem ${credits} tentativas!`;
+                        }
+                    }).verificarPagamento(paymentId);
+                }, 5000);
+            }
+        }
+
+        resetGame();
+    </script>
+</body>
+</html>
