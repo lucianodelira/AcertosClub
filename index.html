@@ -89,126 +89,123 @@
 
     
 
-    <h1>Jogo das Minas com Pix</h1>
-    <h1>Prêmios de R$2,00 a R$200,00</h1>
-    <p>Clique no botão para gerar uma cobrança Pix e liberar tentativas!</p>
-    <select id="credit-menu">
-        <option value="1">3 créditos por R$1</option>
-        <option value="3">4 créditos por R$3</option>
-        <option value="5">5 créditos por R$5</option>
-    </select>
-    <button id="pix-button">Gerar QR Code Pix</button>
-    <div id="timer"></div>
-    <img id="qrcode" alt="QR Code Pix" style="display:none;"/>
-    <div id="pix-key" title="Clique para copiar a chave Pix" style="display:none;"></div>
-    <div id="game-liberado" style="display:none;">🎉 Jogo liberado! 🎉</div>
-    <div id="win-message" style="display:none;">🎉 Você ganhou! 🎉</div>
-    <div id="lose-message" style="display:none; cursor: pointer;">😞 Você perdeu! Clique para reiniciar.</div>
-    <div id="game-board"></div>
+
+  <h1>Jogo das Minas com Pix</h1>
+  <h1>Prêmios de R$2,00 a R$200,00</h1>
+  <p>Clique no botão para gerar uma cobrança Pix e liberar tentativas!</p>
+  <select id="credit-menu">
+    <option value="1">3 créditos por R$1</option>
+    <option value="3">4 créditos por R$3</option>
+    <option value="5">5 créditos por R$5</option>
+  </select>
+  <button id="pix-button">Gerar QR Code Pix</button>
+  <div id="timer"></div>
+  <img id="qrcode" alt="QR Code Pix" style="display:none;" />
+  <div id="pix-key" title="Clique para copiar a chave Pix" style="display:none;"></div>
+  <div id="game-liberado" style="display:none;">🎉 Jogo liberado! 🎉</div>
+  <div id="win-message" style="display:none;">🎉 Você ganhou! 🎉</div>
+  <div id="lose-message" style="display:none; cursor: pointer;">😞 Você perdeu! Clique para reiniciar.</div>
+  <div id="game-board"></div>
+</section>
 
 <script>
-        
-        const board = document.getElementById('game-board');
-        const pixButton = document.getElementById('pix-button');
-        const timerDisplay = document.getElementById('timer');
-        const qrcodeImg = document.getElementById('qrcode');
-        const pixKeyDisplay = document.getElementById('pix-key');
-        const winMessage = document.getElementById('win-message');
-        const loseMessage = document.getElementById('lose-message');
-        const gameLiberado = document.getElementById('game-liberado');
-        const totalCells = 12;
-        let prizeIndex;
-        let attempts;
-        let credits;
-        let countdownInterval;
+  const googleAppsScriptURL = "URL_DO_SEU_APPS_SCRIPT"; // Substitua pela URL do Apps Script
+  const pixButton = document.getElementById("pix-button");
+  const qrcodeImg = document.getElementById("qrcode");
+  const pixKeyDisplay = document.getElementById("pix-key");
+  const gameLiberado = document.getElementById("game-liberado");
+  const timerDisplay = document.getElementById("timer");
+  const board = document.getElementById("game-board");
 
-        function resetGame() {
-            prizeIndex = Math.floor(Math.random() * totalCells);
-            attempts = 0;
-            credits = 0;
-            pixButton.disabled = false;
-            timerDisplay.innerHTML = '';
-            qrcodeImg.style.display = 'none';
-            pixKeyDisplay.style.display = 'none';
-            winMessage.style.display = 'none';
-            loseMessage.style.display = 'none';
-            gameLiberado.style.display = 'none';
-            clearInterval(countdownInterval);
-            createBoard();
+  const totalCells = 12;
+  let prizeIndex, attempts, credits;
+
+  function resetGame() {
+    prizeIndex = Math.floor(Math.random() * totalCells);
+    attempts = 0;
+    credits = 0;
+    timerDisplay.innerHTML = "";
+    qrcodeImg.style.display = "none";
+    pixKeyDisplay.style.display = "none";
+    gameLiberado.style.display = "none";
+    createBoard();
+  }
+
+  function createBoard() {
+    board.innerHTML = "";
+    for (let i = 0; i < totalCells; i++) {
+      const cell = document.createElement("div");
+      cell.className = "cell";
+      cell.dataset.index = i;
+
+      cell.addEventListener("click", function () {
+        if (attempts > 0) {
+          attempts--;
+          if (parseInt(cell.dataset.index) === prizeIndex) {
+            cell.classList.add("prize");
+            cell.innerHTML = "🏆";
+            alert("🎉 Você ganhou!");
+          } else {
+            cell.classList.add("revealed");
+            cell.innerHTML = "❌";
+          }
         }
+      });
 
-        function createBoard() {
-            board.innerHTML = '';
-            for (let i = 0; i < totalCells; i++) {
-                const cell = document.createElement('div');
-                cell.className = 'cell';
-                cell.dataset.index = i;
+      board.appendChild(cell);
+    }
+  }
 
-                cell.addEventListener('click', function () {
-                    if (attempts > 0) {
-                        attempts--;
-                        if (parseInt(cell.dataset.index) === prizeIndex) {
-                            cell.classList.add('prize');
-                            cell.innerHTML = '🏆';
-                            winMessage.style.display = 'block';
-                            setTimeout(() => {
-                                window.location.href = 'https://app.acerto.club';
-                            }, 3000);
-                            disableBoard();
-                        } else {
-                            cell.classList.add('revealed');
-                            cell.innerHTML = '❌';
-                        }
-                        if (attempts === 0) {
-                            revealBoard();
-                        }
-                    }
-                });
+  pixButton.addEventListener("click", async () => {
+    const selectedOption = document.getElementById("credit-menu").value;
 
-                board.appendChild(cell);
-            }
-        }
+    try {
+      const response = await fetch(googleAppsScriptURL, {
+        method: "POST",
+        body: JSON.stringify({ action: "generatePix", creditOption: selectedOption }),
+      });
 
-        function enableBoard() {
-            const cells = document.querySelectorAll('.cell');
-            cells.forEach(cell => cell.style.pointerEvents = 'auto');
-            qrcodeImg.style.display = 'none';
-            timerDisplay.style.display = 'none';
-            gameLiberado.style.display = 'block';
-        }
+      const data = await response.json();
+      if (data.qrCodeURL) {
+        qrcodeImg.src = data.qrCodeURL;
+        qrcodeImg.style.display = "block";
+        pixKeyDisplay.innerText = `Chave Pix: ${data.pixKey}`;
+        pixKeyDisplay.style.display = "block";
+      }
 
-        function disableBoard() {
-            const cells = document.querySelectorAll('.cell');
-            cells.forEach(cell => cell.style.pointerEvents = 'none');
-        }
+      checkPayment();
+    } catch (error) {
+      console.error("Erro ao gerar Pix:", error);
+    }
+  });
 
-        function revealBoard() {
-            loseMessage.style.display = 'block';
-            const cells = document.querySelectorAll('.cell');
-            cells.forEach((cell, index) => {
-                if (index == prizeIndex) {
-                    cell.classList.add('prize');
-                    cell.innerHTML = '🏆';
-                } else {
-                    cell.classList.add('revealed');
-                    cell.innerHTML = '❌';
-                }
-            });
-            disableBoard();
-        }
-
-        pixButton.addEventListener('click', function () {
-            const selectedCredit = 3; // Exemplo de crédito fixo
-            credits = selectedCredit;
-            attempts = credits;
-            timerDisplay.innerHTML = `Você tem ${credits} tentativas!`;
-            enableBoard();
+  async function checkPayment() {
+    const interval = setInterval(async () => {
+      try {
+        const response = await fetch(googleAppsScriptURL, {
+          method: "POST",
+          body: JSON.stringify({ action: "verifyPayment" }),
         });
 
-        resetGame();
-  
-    </script>
+        const data = await response.json();
+        if (data.paymentConfirmed) {
+          clearInterval(interval);
+          gameLiberado.style.display = "block";
+          enableBoard();
+        }
+      } catch (error) {
+        console.error("Erro ao verificar pagamento:", error);
+      }
+    }, 5000);
+  }
 
+  function enableBoard() {
+    const cells = document.querySelectorAll(".cell");
+    cells.forEach(cell => (cell.style.pointerEvents = "auto"));
+  }
+
+  resetGame();
+</script>
 
 
 
