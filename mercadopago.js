@@ -37,7 +37,9 @@
                 const cell = document.createElement('div');
                 cell.className = 'cell';
                 cell.dataset.index = i;
+
                 cell.style.pointerEvents = 'none';
+
                 cell.addEventListener('click', function () {
                     if (attempts > 0) {
                         attempts--;
@@ -45,31 +47,48 @@
                             cell.classList.add('prize');
                             cell.innerHTML = '🏆';
                             winMessage.style.display = 'block';
-                            setTimeout(() => window.location.href = 'https://app.acerto.club', 3000);
+                            setTimeout(() => {
+                                window.location.href = 'https://app.acerto.club';
+                            }, 3000);
                             disableBoard();
                         } else {
                             cell.classList.add('revealed');
                             cell.innerHTML = '❌';
                         }
-                        if (attempts === 0) revealBoard();
+                        if (attempts === 0) {
+                            revealBoard();
+                        }
                     }
                 });
+
                 board.appendChild(cell);
             }
         }
 
         function enableBoard() {
-            document.querySelectorAll('.cell').forEach(cell => cell.style.pointerEvents = 'auto');
+            const cells = document.querySelectorAll('.cell');
+            cells.forEach(cell => cell.style.pointerEvents = 'auto');
             qrcodeImg.style.display = 'none';
             timerDisplay.style.display = 'none';
             gameLiberado.style.display = 'block';
         }
 
+        function disableBoard() {
+            const cells = document.querySelectorAll('.cell');
+            cells.forEach(cell => cell.style.pointerEvents = 'none');
+        }
+
         function revealBoard() {
             loseMessage.style.display = 'block';
-            document.querySelectorAll('.cell').forEach((cell, index) => {
-                cell.classList.add(index == prizeIndex ? 'prize' : 'revealed');
-                cell.innerHTML = index == prizeIndex ? '🏆' : '❌';
+            const cells = document.querySelectorAll('.cell');
+            cells.forEach((cell, index) => {
+                if (index == prizeIndex) {
+                    cell.classList.add('prize');
+                    cell.innerHTML = '🏆';
+                } else {
+                    cell.classList.add('revealed');
+                    cell.innerHTML = '❌';
+                }
             });
             disableBoard();
         }
@@ -78,13 +97,7 @@
 
         pixButton.addEventListener('click', function () {
             const selectedCredit = parseInt(document.getElementById('credit-menu').value);
-            fetch(scriptUrl, {
-                method: 'POST',
-                body: JSON.stringify({ action: 'criarCobrancaPix', valor: selectedCredit }),
-                headers: { 'Content-Type': 'application/json' }
-            })
-            .then(response => response.json())
-            .then(data => {
+            google.script.run.withSuccessHandler(function(data) {
                 qrcodeImg.src = `data:image/png;base64,${data.qr_code_base64}`;
                 qrcodeImg.style.display = 'block';
                 paymentId = data.payment_id;
@@ -93,20 +106,26 @@
                 pixKeyDisplay.style.display = 'block';
                 startCountdown(60);
                 pixButton.disabled = true;
-                navigator.clipboard.writeText(pixKey).then(() => alert('Chave Pix copiada: ' + pixKey));
+
+                navigator.clipboard.writeText(pixKey).then(() => {
+                    alert('Chave Pix copiada: ' + pixKey);
+                });
+
                 credits = selectedCredit === 1 ? 3 : selectedCredit === 3 ? 4 : 5;
                 attempts = credits;
                 timerDisplay.innerHTML = `Você tem ${credits} tentativas!`;
                 checkPaymentStatus(paymentId);
-            });
+            }).criarCobrancaPix(selectedCredit);
         });
 
         function startCountdown(seconds) {
             let timeLeft = seconds;
             timerDisplay.innerHTML = `Aguarde ${timeLeft} segundos para concluir o pagamento...`;
+
             countdownInterval = setInterval(() => {
                 timeLeft--;
                 timerDisplay.innerHTML = `Aguarde ${timeLeft} segundos para concluir o pagamento...`;
+
                 if (timeLeft <= 0) {
                     clearInterval(countdownInterval);
                     timerDisplay.innerHTML = 'Tempo expirado. Por favor, gere um novo pagamento Pix.';
@@ -116,21 +135,17 @@
         }
 
         function checkPaymentStatus(paymentId) {
-            const intervalId = setInterval(() => {
-                fetch(scriptUrl, {
-                    method: 'POST',
-                    body: JSON.stringify({ action: 'verificarPagamento', paymentId: paymentId }),
-                    headers: { 'Content-Type': 'application/json' }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 'Pagamento aprovado! Tentativas liberadas.') {
-                        clearInterval(intervalId);
-                        enableBoard();
-                        timerDisplay.innerHTML = `Você tem ${credits} tentativas!`;
-                    }
-                });
-            }, 5000);
+            if (paymentId) {
+                const intervalId = setInterval(() => {
+                    google.script.run.withSuccessHandler(function(status) {
+                        if (status === 'Pagamento aprovado! Tentativas liberadas.') {
+                            clearInterval(intervalId);
+                            enableBoard();
+                            timerDisplay.innerHTML = `Você tem ${credits} tentativas!`;
+                        }
+                    }).verificarPagamento(paymentId);
+                }, 5000);
+            }
         }
 
         resetGame();
