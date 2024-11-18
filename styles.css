@@ -1,0 +1,957 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #000000;
+    color: white;
+    padding: 15px;
+    position: relative; /* Para posicionamento do menu expandido */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
+}
+
+/* Container do Cabeçalho */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Título do App */
+header h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+/* Agrupa o ícone e o título alinhando à esquerda com espaçamento */
+.logo-title {
+    display: flex;
+    align-items: center; /* Garante que o ícone e o título fiquem alinhados verticalmente */
+}
+
+.logo-title h1 {
+    margin-left: 10px; /* Espaçamento entre o ícone e o título */
+    font-size: 1.5em; /* Tamanho do título */
+}
+
+/* Estilo para o ícone ao lado do título */
+.logo-icon {
+    width: 40px; /* Tamanho do ícone */
+    height: 40px;
+    vertical-align: middle;
+}
+
+/* Botão de Menu Hambúrguer */
+.hamburger {
+    font-size: 1.5em;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: none; /* Inicialmente oculto em telas maiores */
+}
+
+/* Menu Expandido */
+.expand-menu {
+    background-color: #4CAF50;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    max-height: 0; /* Oculto inicialmente */
+}
+
+.expand-menu.active {
+    max-height: 500px; /* Ajuste conforme necessário */
+}
+
+.expand-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.expand-menu li {
+    border-top: 1px solid #ffffff;
+}
+
+.expand-menu li:first-child {
+    border-top: none;
+}
+
+.expand-menu a {
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.expand-menu a:hover {
+    background-color: #45a049;
+}
+
+/* Responsividade do Botão Hambúrguer */
+@media screen and (max-width: 768px) {
+    .hamburger {
+        display: block; /* Mostra o botão em telas menores */
+    }
+
+    /* Ajuste o max-height do menu expandido para telas menores, se necessário */
+    .expand-menu.active {
+        max-height: 600px; /* Pode ser ajustado */
+    }
+}
+
+/* Conteúdo Principal */
+main {
+    padding: 20px;
+    padding-bottom: 80px; /* Adiciona espaçamento para evitar sobreposição pelo footer */
+}
+
+.hidden {
+    display: none;
+}
+
+/* Footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    border-top-left-radius: 15px; /* Ajuste o valor conforme necessário */
+    border-top-right-radius: 15px; /* Ajuste o valor conforme necessário */
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.5); /* Sombra opcional para destaque */
+}
+
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 600px;
+    padding: 10px 0;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    cursor: pointer; /* Indica que o item é clicável */
+    transition: background-color 0.3s;
+}
+
+.nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.nav-item img {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 5px;
+}
+
+.nav-item span {
+    font-size: 12px;
+}
+
+.nav-item.active {
+    background-color: #555;
+    border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+    .nav-item img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .nav-item span {
+        font-size: 10px;
+    }
+}
+
+
+/* Estilos para uma tabela sofisticada */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 20px;
+    background-color: #ffffff; /* Fundo da tabela */
+    border-radius: 10px; /* Bordas arredondadas */
+    overflow: hidden; /* Para aplicar as bordas arredondadas no cabeçalho */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para destaque */
+}
+
+th, td {
+    padding: 12px 15px; /* Mais espaçamento para um visual limpo */
+    text-align: left;
+    font-family: 'Arial', sans-serif; /* Fonte mais elegante */
+}
+
+th {
+    background-color: #4CAF50; /* Cor do cabeçalho */
+    color: #ffffff; /* Texto do cabeçalho em branco */
+    text-transform: uppercase; /* Texto em maiúsculas */
+    font-weight: 600;
+    font-size: 14px;
+}
+
+td {
+    font-size: 14px;
+    color: #333; /* Cor do texto para maior contraste */
+}
+
+tr {
+    transition: background-color 0.3s ease; /* Suaviza a transição ao passar o mouse */
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9; /* Linhas pares com cor diferente */
+}
+
+tr:hover {
+    background-color: #f1f1f1; /* Cor ao passar o mouse sobre a linha */
+}
+
+/* Bordas arredondadas apenas no topo da tabela */
+table th:first-child {
+    border-top-left-radius: 10px;
+}
+
+table th:last-child {
+    border-top-right-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Estilos para o menu vertical de loterias */
+#menuLoterias {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Maior espaçamento entre os itens */
+    margin-top: 30px;
+}
+
+.menu-loteria-item {
+    padding: 12px;
+    background-color: #007BFF; /* Azul profissional */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1.1em; /* Tamanho de fonte maior e mais refinado */
+    font-weight: 600; /* Texto mais robusto */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para destaque */
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.menu-loteria-item:hover {
+    background-color: #0056b3; /* Azul mais escuro no hover */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta a sombra no hover */
+}
+
+/* Estilos para a seção 'Selecionar Loteria' */
+#selecionarNome {
+    max-width: 500px; /* Aumenta o tamanho para uma aparência mais espaçosa */
+    margin: 0 auto;
+}
+
+#selecionarNome h2 {
+    margin-bottom: 15px;
+    font-size: 1.4em; /* Tamanho maior para um título mais destacado */
+    font-weight: 700;
+    color: #333;
+    text-align: center; /* Centraliza o título */
+}
+
+/* Estilo para os dropdowns */
+select {
+    padding: 12px; /* Aumenta o espaçamento interno */
+    margin-top: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 350px;
+    display: block;
+    font-size: 1em;
+    background-color: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: border-color 0.3s;
+}
+
+select:hover {
+    border-color: #007BFF; /* Muda a cor da borda ao passar o mouse */
+}
+
+/* Estilização do botão "Mostrar palpite" */
+#mostrarPalpiteBtn {
+    padding: 12px 25px;
+    background-color: #28a745; /* Verde mais moderno */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 25px 0;
+    font-size: 1.1em;
+    font-weight: 600;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+#mostrarPalpiteBtn:hover {
+    background-color: #218838; /* Verde mais escuro no hover */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta a sombra no hover */
+}
+
+/* Estilos para o link "Selecionar a loteria" */
+.button-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #6c757d; /* Cinza profissional */
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    font-weight: 600;
+    font-size: 1em;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.button-link:hover {
+    background-color: #5a6268; /* Cinza mais escuro no hover */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta a sombra no hover */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Estilos para os cabeçalhos das seções com link */
+.header-exibir,
+.header-palpite {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-exibir h2,
+.header-palpite h2 {
+    margin-bottom: 10px;
+}
+
+/* Loader com círculos pulsantes */
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+    position: relative;
+    margin: 20px auto; /* Centraliza o loader */
+}
+
+.loader::before, .loader::after {
+    content: '';
+    position: absolute;
+    border: 4px solid #4CAF50; /* Cor da borda dos círculos */
+    border-radius: 50%;
+    animation: pulsate 1.5s ease-out infinite;
+}
+
+.loader::before {
+    width: 40px;
+    height: 40px;
+    animation-delay: 0.4s; /* Diferente tempo de delay para o efeito */
+}
+
+.loader::after {
+    width: 60px;
+    height: 60px;
+}
+
+@keyframes pulsate {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+
+/* Seção 'Jogar' com iframe em tela cheia */
+#modoJogar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999; /* Garante que a iframe sobreponha todo o conteúdo */
+    display: none; /* Inicialmente, a seção estará oculta */
+}
+
+#jogarIframe {
+    width: 100%;
+    height: 100%;
+    border: none; /* Remove borda da iframe */
+}
+
+/* Estilo para o botão de fechar iframe - 100% redondo e com sombra */
+.close-iframe {
+    position: absolute;
+    bottom: 60px; /* Mova o botão 20px mais para cima */
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 50%; /* Torna o botão completamente redondo */
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10000; /* Sobrepõe o iframe */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Adiciona sombra */
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.close-iframe:hover {
+    background-color: rgba(255, 0, 0, 0.8);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.7); /* Sombra aumenta no hover */
+}
+
+/* Frase personalizada */
+.frase-palpite {
+    font-size: 1.0em;
+    margin-bottom: 10px;
+    color: #333;
+    text-align: left; /* Alinha a frase à direita */
+}
+
+/* Novas Seções de Conteúdo */
+#comoFunciona,
+#politicasPrivacidade,
+#termosServico,
+#sobre {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#comoFunciona h2,
+#politicasPrivacidade h2,
+#termosServico h2,
+#sobre h2 {
+    margin-bottom: 10px;
+}
+
+#comoFunciona p,
+#politicasPrivacidade p,
+#termosServico p,
+#sobre p {
+    font-size: 1em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: justify;
+    hyphens: auto;
+    word-break: break-word;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Título de Acertos das previsões */
+#acertosPrevisoesTitulo {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Estilo para as abas */
+.tab-list {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+    border-bottom: 4px solid transparent;
+    position: relative;
+    transition: border-color 0.3s;
+    z-index: 0; /* Certifica-se de que a linha fique atrás das abas */
+}
+
+/* Linha de cor ativa que fica atrás das abas */
+.tab-list::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #4CAF50; /* Cor padrão inicial da aba ativa (milhar) */
+    z-index: -1; /* Move a linha atrás das abas */
+    transition: background-color 0.3s;
+}
+
+/* Estilos das abas - mantém a cor ao ser selecionada */
+.tab-link {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+    border-radius: 10px; /* Todos os cantos arredondados */
+    transition: background-color 0.3s, color 0.3s;
+    flex-grow: 1;
+    text-align: center;
+    font-size: 1em;
+}
+
+/* Cor das abas */
+.tab-link[data-tab="milhar"] {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+}
+
+.tab-link[data-tab="centena"] {
+    background-color: #FFEB3B; /* Amarelo */
+    color: #333; /* Para melhor legibilidade no amarelo */
+}
+
+.tab-link[data-tab="dezena"] {
+    background-color: #9E9E9E; /* Cinza */
+    color: white;
+}
+
+/* Aba ativa - mantém a cor ao ser selecionada */
+.tab-link.active[data-tab="milhar"] {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.tab-link.active[data-tab="centena"] {
+    background-color: #FFEB3B;
+    color: #333;
+}
+
+.tab-link.active[data-tab="dezena"] {
+    background-color: #9E9E9E;
+    color: white;
+}
+
+/* Efeito da linha colorida atrás das abas quando ativa */
+.tab-list.active-milhar::before {
+    background-color: #4CAF50; /* Verde */
+}
+
+.tab-list.active-centena::before {
+    background-color: #FFEB3B; /* Amarelo */
+}
+
+.tab-list.active-dezena::before {
+    background-color: #9E9E9E; /* Cinza */
+}
+
+/* Badge para o número de frases */
+.badge {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    color: white;
+    padding: 5px 10px;
+    font-size: 0.8em;
+    margin-left: 8px;
+    display: inline-block;
+}
+
+/* Estilo para o conteúdo das abas */
+.tab-content {
+    margin-top: 20px;
+}
+
+.tab-content.hidden {
+    display: none;
+}
+
+/* Estilo para os cards de frase de palpite */
+.frase-palpite-card {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-left: 6px solid;
+    border-radius: 5px;
+}
+
+/* Cores dos cards combinando com as abas */
+#milhar .frase-palpite-card {
+    background-color: #e7f8e7; /* Tom claro de verde */
+    border-color: #4CAF50;
+}
+
+#centena .frase-palpite-card {
+    background-color: #fff9c4; /* Tom claro de amarelo */
+    border-color: #FFEB3B;
+}
+
+#dezena .frase-palpite-card {
+    background-color: #f5f5f5; /* Tom claro de cinza */
+    border-color: #9E9E9E;
+}
+
+/* Responsividade - ajusta tamanho das abas e fonte para dispositivos móveis */
+@media (max-width: 768px) {
+    .tab-list {
+        justify-content: space-between;
+    }
+
+    .tab-link {
+        font-size: 0.9em;
+        padding: 8px;
+    }
+
+    .frase-palpite-card {
+        font-size: 0.9em;
+        padding: 8px;
+    }
+}
+
+/* Responsividade - em telas menores ainda */
+@media (max-width: 480px) {
+    .tab-link {
+        font-size: 0.85em;
+        padding: 6px;
+    }
+
+    .badge {
+        font-size: 0.75em;
+    }
+}
+
+
+/* Container dos cartões */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px; /* Espaçamento entre os cartões */
+    justify-content: center; /* Centraliza os cartões */
+    margin-top: 20px;
+}
+
+/* Estilo dos cartões */
+.card-palpite {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    width: 80px; /* Largura fixa para cada card */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsividade: Ajuste para telas menores */
+@media (max-width: 600px) {
+    .card-palpite {
+        width: 60px; /* Diminui a largura em telas menores */
+    }
+}
+
+/* Estilo para os botões de alternância de categoria */
+.botoes-categorias {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.botoes-categorias button {
+    background-color: #9E9E9E; /* Cor de fundo cinza */
+    color: white;
+    border: 2px solid #7D7D7D;
+    border-radius: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, box-shadow 0.3s;
+    flex: 1;
+    max-width: 80px;
+    text-align: center;
+}
+
+/* Estilo para o botão ativo */
+.botoes-categorias button.ativo {
+    background-color: #4CAF50; /* Cor verde para o botão ativo */
+    border-color: #45a049;
+}
+
+.botoes-categorias button:hover:not(.ativo) {
+    background-color: #7D7D7D; /* Cinza mais escuro no hover, apenas para botões inativos */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+
+.mensagem-flutuante {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.fechar-mensagem {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.mensagem-conteudo {
+    text-align: center;
+    max-width: 600px;
+    max-height: 80vh; /* Limita a altura para permitir rolagem */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Habilita rolagem vertical */
+}
+
+.mensagem-conteudo img.logo-acertos {
+    width: 250px;
+    height: 160px;
+    margin-bottom: 20px;
+}
+
+.cadastre-se-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ffdd57;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.icone-jogar {
+    width: 20px;
+    vertical-align: middle;
+}
+
+.bonus-list, .ganhos-list {
+    text-align: left;
+    margin: 10px 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.bonus-list li, .ganhos-list li {
+    margin-bottom: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: #cc6611;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cell:hover {
+    background-color: #ff9900;
+}
+
+.revealed {
+    background-color: red;
+    color: #ffffff;
+    pointer-events: none;
+}
+
+.prize {
+    background-color: gold;
+    color: black;
+    font-size: 30px;
+}
+
+#pix-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+#pix-button:hover {
+    background-color: #45a049;
+}
+
+#pix-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#credit-menu {
+    padding: 5px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+#timer {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+#qrcode {
+    display: none;
+    margin: 20px auto;
+    width: 200px;
+    height: 200px;
+}
+
+#pix-key {
+    display: none;
+    margin-top: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+}
+
+#win-message, #lose-message {
+    display: none;
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+#win-message {
+    color: green;
+}
+
+#lose-message {
+    color: red;
+    cursor: pointer;
+}
+
+#game-liberado {
+    display: none;
+    font-size: 24px;
+    margin-top: 20px;
+    color: #4caf50;
+    font-weight: bold;
+}
+
+

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagamento PIX</title>
+  <style>
+    body { font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+    #qrcode { margin: 20px; }
+    #status { margin: 20px; font-weight: bold; }
+    #payment-completed { display: none; color: green; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Pagamento via PIX</h1>
+  <p>Valor: R$10,00</p>
+  <div id="qrcode">Gerando QR Code...</div>
+  <div id="status">Aguardando pagamento...</div>
+  <div id="payment-completed">Pagamento confirmado! Redirecionando...</div>
+
+  <script>
+    const appScriptUrl = 'https://script.google.com/macros/s/AKfycbxyiThjNeMMWJ6MuhSC0jMw7FHZ4O8_VeanJUMEWfUN890kFC7REcIn6tKrzqPcz8v_WA/exec';  // Insira o URL do Google Apps Script aqui
+
+    async function createPixPayment() {
+      try {
+        const response = await fetch(`${appScriptUrl}?action=create`);
+        const data = await response.json();
+        
+        if (data.qr_code) {
+          // Verifique se o QR Code está em formato URL ou base64; ajuste conforme o caso.
+          const qrCodeImage = data.qr_code.startsWith('http') ? data.qr_code : `data:image/png;base64,${data.qr_code}`;
+          document.getElementById('qrcode').innerHTML = `<img src="${qrCodeImage}" alt="QR Code do PIX">`;
+          checkPaymentStatus(data.id);
+        } else {
+          document.getElementById('qrcode').innerText = "Erro ao gerar QR Code.";
+          console.error("Erro na resposta da API:", data);
+        }
+      } catch (error) {
+        document.getElementById('qrcode').innerText = "Erro ao criar pagamento.";
+        console.error("Erro ao criar pagamento:", error);
+      }
+    }
+
+    async function checkPaymentStatus(transactionId) {
+      const statusDiv = document.getElementById('status');
+      
+      const intervalId = setInterval(async () => {
+        try {
+          const response = await fetch(`${appScriptUrl}?action=check&transactionId=${transactionId}`);
+          const data = await response.json();
+          
+          if (data.status === 'confirmed') {
+            clearInterval(intervalId);
+            statusDiv.style.display = 'none';
+            document.getElementById('payment-completed').style.display = 'block';
+            setTimeout(() => window.location.href = "URL_DE_REDIRECIONAMENTO", 3000); // Redirecione após 3 segundos
+          }
+        } catch (error) {
+          console.error("Erro ao verificar status do pagamento:", error);
+        }
+      }, 5000);  // Verifica a cada 5 segundos
+    }
+
+    // Chama a função ao carregar a página
+    createPixPayment();
+  </script>
+</body>
+</html>
