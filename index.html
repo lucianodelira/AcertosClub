@@ -88,131 +88,31 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo Interativo</title>
+    <title>Jogo Integrado</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             min-height: 100vh;
             background-color: #f4f4f4;
         }
 
-        #game-board {
-            display: grid;
-            grid-template-columns: repeat(4, 60px);
-            gap: 10px;
-            margin-top: 20px;
-            position: relative;
-            z-index: 10; /* Garante que o tabuleiro esteja acima de outros elementos */
-        }
-
-        .cell {
-            width: 60px;
-            height: 60px;
-            background-color: #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: bold;
-            cursor: pointer;
-            border: 2px solid #bbb;
-            z-index: 20; /* Garante que as células sejam clicáveis */
-            pointer-events: auto;
-        }
-
-        .cell.prize {
-            background-color: #4caf50;
-            color: #fff;
-        }
-
-        .cell.revealed {
-            background-color: #e57373;
-            color: #fff;
-        }
-
-        #pix-button,
-        #timer,
-        #qrcode,
-        #pix-key,
-        #win-message,
-        #lose-message,
-        #game-liberado {
-            margin-top: 20px;
-            text-align: center;
-            z-index: 5;
-        }
-
-        #qrcode {
-            width: 150px;
-            height: 150px;
-        }
-
-        #pix-button {
-            background-color: #007bff;
-            color: white;
+        iframe {
+            width: 100%;
+            height: 100vh;
             border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        #pix-button:disabled {
-            background-color: #aaa;
-            cursor: not-allowed;
-        }
-
-        #win-message,
-        #lose-message,
-        #game-liberado {
-            display: none;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        #win-message {
-            color: #4caf50;
-        }
-
-        #lose-message {
-            color: #e57373;
         }
     </style>
 </head>
 <body>
-    <div id="game-board"></div>
-    <button id="pix-button">Comprar Créditos</button>
-    <div id="timer"></div>
-    <img id="qrcode" style="display:none;" alt="QR Code">
-    <div id="pix-key" style="display:none;"></div>
-    <div id="win-message">Parabéns! Você venceu!</div>
-    <div id="lose-message">Você perdeu! Tente novamente.</div>
-    <div id="game-liberado">Jogo Liberado! Boa sorte!</div>
-        
-</head>
-<body>
-    <h1>Jogo das Minas com Pix</h1>
-    <h1>Premios que vão de 2,00 reais até 200,00 reais</h1>
-    <p>Clique no botão abaixo para gerar uma cobrança Pix e liberar tentativas!</p>
-    <select id="credit-menu">
-        <option value="1">3 créditos por R$1</option>
-        <option value="3">4 créditos por R$3</option>
-        <option value="5">5 créditos por R$5</option>
-    </select>
-    <button id="pix-button">Gerar QR Code Pix</button>
-    <div id="timer"></div>
-    <img id="qrcode" alt="QR Code Pix"/>
-    <div id="pix-key" title="Clique para copiar a chave Pix"></div>
-    <div id="game-liberado">🎉 Jogo liberado! 🎉</div>
-    <div id="win-message">🎉 Você ganhou! 🎉</div>
-    <div id="lose-message">😞 Você perdeu! Clique aqui para reiniciar o jogo.</div>
-
-    <div id="game-board"></div>
+    <iframe 
+        src="URL_DO_GOOGLE_APPS_SCRIPT_AQUI" 
+        title="Jogo Integrado">
+    </iframe>
 
 </section>
 
