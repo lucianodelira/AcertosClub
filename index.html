@@ -87,100 +87,113 @@
 
     <head>
     <meta charset="UTF-8">
-    <title>Jogo das Minas com Pix</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo Interativo</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            text-align: center;
-            padding: 20px;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
         }
+
         #game-board {
             display: grid;
-            grid-template-columns: repeat(3, 100px);
+            grid-template-columns: repeat(4, 60px);
             gap: 10px;
-            justify-content: center;
             margin-top: 20px;
+            position: relative;
+            z-index: 10; /* Garante que o tabuleiro esteja acima de outros elementos */
         }
+
         .cell {
-            width: 100px;
-            height: 100px;
-            background-color: #cc6611;
-            border-radius: 10px;
+            width: 60px;
+            height: 60px;
+            background-color: #ddd;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 24px;
-            color: white;
+            font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.3s;
+            border: 2px solid #bbb;
+            z-index: 20; /* Garante que as células sejam clicáveis */
+            pointer-events: auto;
         }
-        .cell:hover {
-            background-color: #ff9900;
-        }
-        .revealed {
-            background-color: red;
-            color: #ffffff;
-            pointer-events: none;
-        }
-        .prize {
-            background-color: gold;
-            color: black;
-            font-size: 30px;
-        }
-        #pix-button {
+
+        .cell.prize {
             background-color: #4caf50;
+            color: #fff;
+        }
+
+        .cell.revealed {
+            background-color: #e57373;
+            color: #fff;
+        }
+
+        #pix-button,
+        #timer,
+        #qrcode,
+        #pix-key,
+        #win-message,
+        #lose-message,
+        #game-liberado {
+            margin-top: 20px;
+            text-align: center;
+            z-index: 5;
+        }
+
+        #qrcode {
+            width: 150px;
+            height: 150px;
+        }
+
+        #pix-button {
+            background-color: #007bff;
             color: white;
             border: none;
             padding: 10px 20px;
-            font-size: 18px;
+            font-size: 16px;
             cursor: pointer;
-            border-radius: 5px;
-            margin-top: 20px;
         }
+
         #pix-button:disabled {
-            background-color: #ccc;
+            background-color: #aaa;
             cursor: not-allowed;
         }
-        #timer {
-            margin-top: 10px;
-            font-size: 18px;
-            color: #333;
-        }
-        #qrcode {
-            display: none;
-            margin: 20px auto;
-            width: 200px;
-            height: 200px;
-        }
-        #pix-key {
-            display: none;
-            margin-top: 10px;
-            font-size: 18px;
-            cursor: pointer;
-            color: blue;
-            text-decoration: underline;
-        }
-        #win-message, #lose-message {
-            display: none;
-            font-size: 30px;
-            margin-top: 20px;
-        }
-        #win-message {
-            color: green;
-        }
-        #lose-message {
-            color: red;
-            cursor: pointer;
-        }
+
+        #win-message,
+        #lose-message,
         #game-liberado {
             display: none;
-            font-size: 24px;
-            margin-top: 20px;
-            color: #4caf50;
+            font-size: 18px;
             font-weight: bold;
         }
+
+        #win-message {
+            color: #4caf50;
+        }
+
+        #lose-message {
+            color: #e57373;
+        }
     </style>
+</head>
+<body>
+    <div id="game-board"></div>
+    <button id="pix-button">Comprar Créditos</button>
+    <div id="timer"></div>
+    <img id="qrcode" style="display:none;" alt="QR Code">
+    <div id="pix-key" style="display:none;"></div>
+    <div id="win-message">Parabéns! Você venceu!</div>
+    <div id="lose-message">Você perdeu! Tente novamente.</div>
+    <div id="game-liberado">Jogo Liberado! Boa sorte!</div>
+        
 </head>
 <body>
     <h1>Jogo das Minas com Pix</h1>
