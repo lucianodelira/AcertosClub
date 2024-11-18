@@ -13,8 +13,6 @@
         let attempts;
         let credits;
         let countdownInterval;
-        let paymentId = null;
-        let pixKey = '';
 
         function resetGame() {
             prizeIndex = Math.floor(Math.random() * totalCells);
@@ -37,8 +35,6 @@
                 const cell = document.createElement('div');
                 cell.className = 'cell';
                 cell.dataset.index = i;
-
-                cell.style.pointerEvents = 'none';
 
                 cell.addEventListener('click', function () {
                     if (attempts > 0) {
@@ -93,59 +89,12 @@
             disableBoard();
         }
 
-        loseMessage.addEventListener('click', resetGame);
-
         pixButton.addEventListener('click', function () {
-            const selectedCredit = parseInt(document.getElementById('credit-menu').value);
-            google.script.run.withSuccessHandler(function(data) {
-                qrcodeImg.src = `data:image/png;base64,${data.qr_code_base64}`;
-                qrcodeImg.style.display = 'block';
-                paymentId = data.payment_id;
-                pixKey = data.pix_key;
-                pixKeyDisplay.innerHTML = pixKey;
-                pixKeyDisplay.style.display = 'block';
-                startCountdown(60);
-                pixButton.disabled = true;
-
-                navigator.clipboard.writeText(pixKey).then(() => {
-                    alert('Chave Pix copiada: ' + pixKey);
-                });
-
-                credits = selectedCredit === 1 ? 3 : selectedCredit === 3 ? 4 : 5;
-                attempts = credits;
-                timerDisplay.innerHTML = `Você tem ${credits} tentativas!`;
-                checkPaymentStatus(paymentId);
-            }).criarCobrancaPix(selectedCredit);
+            const selectedCredit = 3; // Exemplo de crédito fixo
+            credits = selectedCredit;
+            attempts = credits;
+            timerDisplay.innerHTML = `Você tem ${credits} tentativas!`;
+            enableBoard();
         });
-
-        function startCountdown(seconds) {
-            let timeLeft = seconds;
-            timerDisplay.innerHTML = `Aguarde ${timeLeft} segundos para concluir o pagamento...`;
-
-            countdownInterval = setInterval(() => {
-                timeLeft--;
-                timerDisplay.innerHTML = `Aguarde ${timeLeft} segundos para concluir o pagamento...`;
-
-                if (timeLeft <= 0) {
-                    clearInterval(countdownInterval);
-                    timerDisplay.innerHTML = 'Tempo expirado. Por favor, gere um novo pagamento Pix.';
-                    resetGame();
-                }
-            }, 1000);
-        }
-
-        function checkPaymentStatus(paymentId) {
-            if (paymentId) {
-                const intervalId = setInterval(() => {
-                    google.script.run.withSuccessHandler(function(status) {
-                        if (status === 'Pagamento aprovado! Tentativas liberadas.') {
-                            clearInterval(intervalId);
-                            enableBoard();
-                            timerDisplay.innerHTML = `Você tem ${credits} tentativas!`;
-                        }
-                    }).verificarPagamento(paymentId);
-                }, 5000);
-            }
-        }
 
         resetGame();
