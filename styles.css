@@ -837,6 +837,42 @@ select:hover {
 
 
 
+/* Animação de pulsação para as células */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    background-color: #d46f1c; /* Cor inicial: laranja escuro */
+  }
+  50% {
+    transform: scale(1.1); /* Aumenta o tamanho da célula para 10% */
+    background-color: #005b96; /* Cor azul médio (meio caminho) */
+  }
+  100% {
+    transform: scale(1); /* Retorna ao tamanho normal */
+    background-color: #003366; /* Cor final: azul escuro */
+  }
+}
+
+/* Estilo das células antes de o jogo ser liberado */
+.cell {
+  animation: pulse 1.5s infinite;
+  border: 1px solid #ccc;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* Animação de escala ao passar o mouse */
+.cell:hover {
+  transform: scale(1.1);
+}
+
+/* Células reveladas */
+.revealed {
+  animation: none;
+  background-color: #ffcccb;
+}
 
 
 
@@ -953,5 +989,4 @@ select:hover {
     color: #4caf50;
     font-weight: bold;
 }
-
 
