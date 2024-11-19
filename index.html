@@ -86,206 +86,146 @@
 <section id="minasSection" class="hidden">
 
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jogo das Minas com Pix</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin: 0;
-      padding: 20px;
-    }
 
-    h1 {
-      margin: 10px 0;
-    }
-
-    #pix-key {
-      font-size: 14px; /* Ajuste do tamanho da fonte */
-      margin: 10px 0;
-      padding: 10px;
-      background-color: #f0f0f0;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      display: inline-block;
-      word-break: break-word; /* Quebra o texto se necessário */
-      max-width: 90%; /* Limita a largura */
-    }
-
-    #copy-button {
-      display: none; /* Inicialmente oculto */
-      margin-top: 10px;
-      padding: 10px 20px;
-      background-color: #4caf50;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    #copy-button:hover {
-      background-color: #45a049;
-    }
-
-    .cell {
-      display: inline-block;
-      width: 50px;
-      height: 50px;
-      margin: 5px;
-      background-color: #ddd;
-      border: 1px solid #aaa;
-      line-height: 50px;
-      text-align: center;
-      font-size: 18px;
-      cursor: pointer;
-    }
-
-    .cell.revealed {
-      background-color: #f99;
-    }
-
-    .cell.prize {
-      background-color: #9f9;
-    }
-
-    #game-liberado {
-      font-size: 18px;
-      color: green;
-      margin-top: 10px;
-    }
-
-    #game-board {
-      margin-top: 20px;
-    }
-  </style>
-</head>
-<body>
-  <h1>Jogo das Minas com Pix</h1>
-  <h1>Prêmios de R$2,00 a R$200,00</h1>
+    
+<h1>Jogo das Minas com Pix</h1>
+  <h2>Prêmios de R$2,00 a R$200,00</h2>
   <p>Clique no botão para gerar uma cobrança Pix e liberar tentativas!</p>
   <select id="credit-menu">
     <option value="1">3 créditos por R$1</option>
   </select>
   <button id="pix-button">Gerar Pix</button>
   <div id="timer"></div>
-  <div id="pix-key" style="display:none;"></div>
-  <button id="copy-button">Copiar Chave Pix</button>
+  <div style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
+    <input 
+      type="text" 
+      id="pix-key" 
+      readonly 
+      style="display:none; width: 100%; padding: 5px; font-size: 14px;"
+      title="Chave Pix"
+    />
+    <button 
+      id="copy-pix-key" 
+      style="display:none; padding: 5px 10px; font-size: 14px; cursor: pointer;"
+      title="Copiar chave Pix">
+      📋
+    </button>
+  </div>
   <div id="game-liberado" style="display:none;">🎉 Jogo liberado! 🎉</div>
+  <div id="win-message" style="display:none;">🎉 Você ganhou! 🎉</div>
+  <div id="lose-message" style="display:none; cursor: pointer;">😞 Você perdeu! Clique para reiniciar.</div>
   <div id="game-board"></div>
+</section>
 
-  <script>
-    const googleAppsScriptURL = "https://script.google.com/macros/s/AKfycbzx14c3vBzTMfJag5EoraiWeSYquV5-_TSDiLLSC2lnoduVPOVtk18llvkO03hhv_VewA/exec";
-    const pixButton = document.getElementById("pix-button");
-    const pixKeyDisplay = document.getElementById("pix-key");
-    const copyButton = document.getElementById("copy-button");
-    const gameLiberado = document.getElementById("game-liberado");
-    const board = document.getElementById("game-board");
+<script>
+  const googleAppsScriptURL = "https://script.google.com/macros/s/AKfycbzx14c3vBzTMfJag5EoraiWeSYquV5-_TSDiLLSC2lnoduVPOVtk18llvkO03hhv_VewA/exec";
+  const pixButton = document.getElementById("pix-button");
+  const pixKeyInput = document.getElementById("pix-key");
+  const copyPixKeyButton = document.getElementById("copy-pix-key");
+  const gameLiberado = document.getElementById("game-liberado");
+  const timerDisplay = document.getElementById("timer");
+  const board = document.getElementById("game-board");
 
-    const totalCells = 12;
-    let prizeIndex, attempts, credits;
-    let paymentId = null;
+  const totalCells = 12;
+  let prizeIndex, attempts, credits;
+  let paymentId = null;
 
-    function resetGame() {
-      prizeIndex = Math.floor(Math.random() * totalCells);
-      attempts = 0;
-      credits = 0;
-      pixKeyDisplay.style.display = "none";
-      copyButton.style.display = "none";
-      gameLiberado.style.display = "none";
-      createBoard();
-    }
+  function resetGame() {
+    prizeIndex = Math.floor(Math.random() * totalCells);
+    attempts = 0;
+    credits = 0;
+    timerDisplay.innerHTML = "";
+    pixKeyInput.style.display = "none";
+    copyPixKeyButton.style.display = "none";
+    gameLiberado.style.display = "none";
+    createBoard();
+  }
 
-    function createBoard() {
-      board.innerHTML = "";
-      for (let i = 0; i < totalCells; i++) {
-        const cell = document.createElement("div");
-        cell.className = "cell";
-        cell.dataset.index = i;
-        cell.style.pointerEvents = "none"; // Inicialmente desabilitado
+  function createBoard() {
+    board.innerHTML = "";
+    for (let i = 0; i < totalCells; i++) {
+      const cell = document.createElement("div");
+      cell.className = "cell";
+      cell.dataset.index = i;
 
-        cell.addEventListener("click", function () {
-          if (attempts > 0) {
-            attempts--;
-            if (parseInt(cell.dataset.index) === prizeIndex) {
-              cell.classList.add("prize");
-              cell.innerHTML = "🏆";
-              alert("🎉 Você ganhou!");
-            } else {
-              cell.classList.add("revealed");
-              cell.innerHTML = "❌";
-            }
+      cell.addEventListener("click", function () {
+        if (attempts > 0) {
+          attempts--;
+          if (parseInt(cell.dataset.index) === prizeIndex) {
+            cell.classList.add("prize");
+            cell.innerHTML = "🏆";
+            alert("🎉 Você ganhou!");
+          } else {
+            cell.classList.add("revealed");
+            cell.innerHTML = "❌";
           }
-        });
+        }
+      });
 
-        board.appendChild(cell);
-      }
+      board.appendChild(cell);
     }
+  }
 
-    pixButton.addEventListener("click", async () => {
-      const selectedOption = document.getElementById("credit-menu").value;
+  pixButton.addEventListener("click", async () => {
+    const selectedOption = document.getElementById("credit-menu").value;
 
+    try {
+      const response = await fetch(googleAppsScriptURL, {
+        method: "POST",
+        body: JSON.stringify({ action: "generatePix", creditOption: selectedOption }),
+      });
+
+      const data = await response.json();
+      if (data.pixKey) {
+        pixKeyInput.value = data.pixKey;
+        pixKeyInput.style.display = "block";
+        copyPixKeyButton.style.display = "block";
+        paymentId = data.paymentId;
+      }
+
+      checkPayment();
+    } catch (error) {
+      console.error("Erro ao gerar Pix:", error);
+    }
+  });
+
+  copyPixKeyButton.addEventListener("click", () => {
+    pixKeyInput.select();
+    document.execCommand("copy");
+    alert("Chave Pix copiada!");
+  });
+
+  async function checkPayment() {
+    if (!paymentId) return;
+
+    const interval = setInterval(async () => {
       try {
         const response = await fetch(googleAppsScriptURL, {
           method: "POST",
-          body: JSON.stringify({ action: "generatePix", creditOption: selectedOption }),
+          body: JSON.stringify({ action: "verifyPayment", paymentId: paymentId }),
         });
 
         const data = await response.json();
-        if (data.pixKey) {
-          pixKeyDisplay.innerText = `Chave Pix: ${data.pixKey}`;
-          pixKeyDisplay.style.display = "block";
-          copyButton.style.display = "block"; // Mostra o botão de copiar
-          paymentId = data.paymentId;
+        if (data.paymentConfirmed) {
+          clearInterval(interval);
+          gameLiberado.style.display = "block";
+          enableBoard();
         }
-
-        checkPayment();
       } catch (error) {
-        console.error("Erro ao gerar Pix:", error);
+        console.error("Erro ao verificar pagamento:", error);
       }
-    });
+    }, 5000);
+  }
 
-    async function checkPayment() {
-      if (!paymentId) return;
+  function enableBoard() {
+    const cells = document.querySelectorAll(".cell");
+    cells.forEach(cell => (cell.style.pointerEvents = "auto"));
+  }
 
-      const interval = setInterval(async () => {
-        try {
-          const response = await fetch(googleAppsScriptURL, {
-            method: "POST",
-            body: JSON.stringify({ action: "verifyPayment", paymentId: paymentId }),
-          });
+  resetGame();
+</script>
 
-          const data = await response.json();
-          if (data.paymentConfirmed) {
-            clearInterval(interval);
-            gameLiberado.style.display = "block";
-            enableBoard();
-          }
-        } catch (error) {
-          console.error("Erro ao verificar pagamento:", error);
-        }
-      }, 5000);
-    }
 
-    function enableBoard() {
-      const cells = document.querySelectorAll(".cell");
-      cells.forEach(cell => (cell.style.pointerEvents = "auto"));
-    }
-
-    copyButton.addEventListener("click", () => {
-      const textArea = document.createElement("textarea");
-      textArea.value = pixKeyDisplay.innerText.replace("Chave Pix: ", "");
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand("copy");
-      document.body.removeChild(textArea);
-      alert("Chave Pix copiada!");
-    });
-
-    resetGame();
-  </script>
-</body>
 
     
 
