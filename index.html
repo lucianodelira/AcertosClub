@@ -92,14 +92,11 @@
   <h1>Prêmios de R$2,00 a R$200,00</h1>
   <p>Clique no botão para gerar uma cobrança Pix e liberar tentativas!</p>
   <select id="credit-menu">
-    <option value="1">3 créditos por R$1</option>
-    <option value="3">4 créditos por R$3</option>
-    <option value="5">5 créditos por R$5</option>
+    <option value="1">3 créditos por R$1</option> <!-- Apenas a opção de 1 real -->
   </select>
-  <button id="pix-button">Gerar QR Code Pix</button>
+  <button id="pix-button">Gerar Pix</button>
   <div id="timer"></div>
-  <img id="qrcode" alt="QR Code Pix" style="display:none;" />
-  <div id="pix-key" title="Clique para copiar a chave Pix" style="display:none;"></div>
+  <div id="pix-key" title="Clique para copiar a chave Pix" style="display:none;"></div> <!-- Chave Pix -->
   <div id="game-liberado" style="display:none;">🎉 Jogo liberado! 🎉</div>
   <div id="win-message" style="display:none;">🎉 Você ganhou! 🎉</div>
   <div id="lose-message" style="display:none; cursor: pointer;">😞 Você perdeu! Clique para reiniciar.</div>
@@ -109,26 +106,28 @@
 <script>
   const googleAppsScriptURL = "https://script.google.com/macros/s/AKfycbzx14c3vBzTMfJag5EoraiWeSYquV5-_TSDiLLSC2lnoduVPOVtk18llvkO03hhv_VewA/exec"; // Substitua pela URL do Apps Script
   const pixButton = document.getElementById("pix-button");
-  const qrcodeImg = document.getElementById("qrcode");
   const pixKeyDisplay = document.getElementById("pix-key");
   const gameLiberado = document.getElementById("game-liberado");
   const timerDisplay = document.getElementById("timer");
   const board = document.getElementById("game-board");
+  
 
   const totalCells = 12;
   let prizeIndex, attempts, credits;
+  let paymentId = null; // Variável para armazenar o paymentId
 
+  // Função para resetar o jogo
   function resetGame() {
     prizeIndex = Math.floor(Math.random() * totalCells);
     attempts = 0;
     credits = 0;
     timerDisplay.innerHTML = "";
-    qrcodeImg.style.display = "none";
     pixKeyDisplay.style.display = "none";
     gameLiberado.style.display = "none";
     createBoard();
   }
 
+  // Função para criar o tabuleiro do jogo
   function createBoard() {
     board.innerHTML = "";
     for (let i = 0; i < totalCells; i++) {
@@ -154,6 +153,7 @@
     }
   }
 
+  // Função para gerar o Pix e obter a chave Pix
   pixButton.addEventListener("click", async () => {
     const selectedOption = document.getElementById("credit-menu").value;
 
@@ -164,25 +164,27 @@
       });
 
       const data = await response.json();
-      if (data.qrCodeURL) {
-        qrcodeImg.src = data.qrCodeURL;
-        qrcodeImg.style.display = "block";
+      if (data.pixKey) {
         pixKeyDisplay.innerText = `Chave Pix: ${data.pixKey}`;
         pixKeyDisplay.style.display = "block";
+        paymentId = data.paymentId; // Armazena o paymentId
       }
 
-      checkPayment(data.paymentId);
+      checkPayment();
     } catch (error) {
       console.error("Erro ao gerar Pix:", error);
     }
   });
 
-  async function checkPayment(paymentId) {
+  // Função para verificar o pagamento
+  async function checkPayment() {
+    if (!paymentId) return; // Verifica se paymentId existe
+
     const interval = setInterval(async () => {
       try {
         const response = await fetch(googleAppsScriptURL, {
           method: "POST",
-          body: JSON.stringify({ action: "verifyPayment", paymentId }),
+          body: JSON.stringify({ action: "verifyPayment", paymentId: paymentId }), // Envia o paymentId
         });
 
         const data = await response.json();
@@ -197,19 +199,32 @@
     }, 5000);
   }
 
+  // Função para liberar o tabuleiro após pagamento
   function enableBoard() {
     const cells = document.querySelectorAll(".cell");
     cells.forEach(cell => (cell.style.pointerEvents = "auto"));
   }
 
+  // Função para copiar a chave Pix para a área de transferência
+  pixKeyDisplay.addEventListener("click", () => {
+    const textArea = document.createElement("textarea");
+    textArea.value = pixKeyDisplay.innerText.replace("Chave Pix: ", "");
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textArea);
+    alert("Chave Pix copiada!");
+  });
+
+  // Iniciar o jogo
   resetGame();
 </script>
 
 
 
 
-
     
+
 </section>
 
 
