@@ -86,9 +86,9 @@
 <section id="minasSection" class="hidden">
 
 
-    <h1>Jogo das Minas com Pix</h1>
-  <h2>Prêmios de R$2,00 a R$200,00</h2>
-  <p>Clique no botão para gerar uma cobrança Pix e liberar tentativas!</p>
+      <h1 id="game-title">Jogo das Minas com Pix</h1>
+  <h2 id="game-description">Prêmios de R$2,00 a R$200,00</h2>
+  <p id="game-instructions">Clique no botão para gerar uma cobrança Pix e liberar tentativas!</p>
   <select id="credit-menu">
     <option value="1" data-prize="2.00">3 créditos por R$1 - Prêmio: R$2,00</option>
     <option value="3" data-prize="10.00">4 créditos por R$3 - Prêmio: R$10,00</option>
@@ -146,6 +146,9 @@
   const prizeBanner = document.getElementById("prize-banner");
   const prizeValueSpan = document.getElementById("prize-value");
   const creditMenu = document.getElementById("credit-menu");
+  const gameTitle = document.getElementById("game-title");
+  const gameDescription = document.getElementById("game-description");
+  const gameInstructions = document.getElementById("game-instructions");
 
   const totalCells = 12;
   let prizeIndex, attempts, clickedCells, credits, paymentId;
@@ -220,7 +223,12 @@
       cell.style.pointerEvents = "auto";
     });
     gameLiberado.style.display = "block";
+    gameTitle.style.display = "none"; // Oculta o título
+    gameDescription.style.display = "none"; // Oculta a descrição
+    gameInstructions.style.display = "none"; // Oculta a instrução
     pixButton.style.display = "none"; // Oculta o botão de gerar Pix
+    pixKeyInput.style.display = "none"; // Oculta a chave Pix
+    copyPixKeyButton.style.display = "none"; // Oculta o botão de copiar chave Pix
   }
 
   // Função para revelar o prêmio quando o jogador perder
@@ -288,10 +296,7 @@
     alert("Chave Pix copiada!");
   });
 
-  // Reiniciar o jogo
   resetButton.addEventListener("click", resetGame);
-
-  // Inicializa o jogo
   resetGame();
 </script>
 
