@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Loto Hack v1</title>
+    <title>AcertosClub</title>
     <link rel="stylesheet" href="styles.css">
     
     <!-- Manifesto para PWA -->
@@ -16,20 +16,20 @@
 <link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
 
     <!-- Meta Tags Básicas de SEO -->
-    <meta name="description" content="Loto Hack v1 ajuda apostadores do Jogo do Bicho a acertarem nas suas apostas e ganhar dinheiro! Analisa resultados e gera palpites baseados em estatísticas e probabilidades de acerto.">
+    <meta name="description" content="Acertosclub ajuda apostadores do Jogo do Bicho a acertarem nas suas apostas e ganhar dinheiro! Analisa resultados e gera palpites baseados em estatísticas e probabilidades de acerto.">
     <meta name="keywords" content="Jogo do Bicho, apostas, palpites, estatísticas, probabilidade, ganhar dinheiro, resultados de loteria">
     
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Loto Hack v1">
+    <meta property="og:title" content="Acertosclub">
     <meta property="og:description" content="Ajudamos apostadores do Jogo do Bicho a acertarem suas apostas com análises estatísticas e probabilidades de acerto.">
     <meta property="og:url" content="https://app.acertosonline.com/">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://app.acertosonline.com/icons/Loto-Hack.png">
-    <meta property="og:site_name" content="Loto Hack v1">
+    <meta property="og:site_name" content="AcertosClub">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Loto Hack v1">
+    <meta name="twitter:title" content="AcertosClub">
     <meta name="twitter:description" content="Ajudamos apostadores do Jogo do Bicho a acertarem suas apostas com análises estatísticas e probabilidades de acerto.">
     <meta name="twitter:image" content="https://app.acertosonline.com/icons/Loto-Hack.png">
     
@@ -38,9 +38,9 @@
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "name": "Loto Hack v1",
+      "name": "AcertosClub",
       "url": "https://app.acertosonline.com/",
-      "description": "Loto Hack v1 ajuda apostadores do Jogo do Bicho a acertarem nas suas apostas e ganhar dinheiro! Analisa resultados e gera palpites baseados em estatísticas e probabilidades de acerto.",
+      "description": "Acertosclub ajuda apostadores do Jogo do Bicho a acertarem nas suas apostas e ganhar dinheiro! Analisa resultados e gera palpites baseados em estatísticas e probabilidades de acerto.",
       "publisher": {
         "@type": "Organization",
         "name": "Loto Hack",
@@ -60,7 +60,7 @@
         <!-- Agrupando o ícone e o título para alinhá-los juntos -->
         <div class="logo-title">
             <img src="icons/LotoHack.png" alt="Loto Hack Logo" class="logo-icon">
-            <h1>Loto Hack v1</h1>
+            <h1>AcertosClub</h1>
         </div>
             <button id="hamburgerMenu" class="hamburger" aria-label="Menu">
                 &#9776; <!-- Ícone de hambúrguer -->
@@ -87,50 +87,49 @@
 
 
       <h1 id="game-title">Jogo das Minas com Pix</h1>
-  <h2 id="game-description">Prêmios de R$2,00 a R$200,00</h2>
-  <p id="game-instructions">Clique no botão para gerar uma cobrança Pix e liberar tentativas!</p>
-  <select id="credit-menu">
-    <option value="1" data-prize="2.00">3 créditos por R$1 - Prêmio: R$2,00</option>
-    <option value="3" data-prize="10.00">4 créditos por R$3 - Prêmio: R$10,00</option>
-    <option value="5" data-prize="50.00">5 créditos por R$5 - Prêmio: R$50,00</option>
-    <option value="10" data-prize="200.00">6 créditos por R$10 - Prêmio: R$200,00</option>
-  </select>
-  <button id="pix-button">Gerar Pix</button>
-  <div id="timer"></div>
-  <div style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
-    <input 
-      type="text" 
-      id="pix-key" 
-      readonly 
-      style="display:none; width: 100%; padding: 5px; font-size: 14px;"
-      title="Chave Pix"
-    />
-    <button 
-      id="copy-pix-key" 
-      style="display:none; padding: 5px 10px; font-size: 14px; cursor: pointer;"
-      title="Copiar chave Pix">
-      📋
-    </button>
-  </div>
-  <div id="game-liberado" style="display:none;">🎉 Jogo liberado! 🎉</div>
-  <div id="win-message" style="display:none;">🎉 Você ganhou! 🎉</div>
-  <div id="lose-message" style="display:none;">
-    😞 Você perdeu! O prêmio estava na posição <span id="prize-position"></span>.
-  </div>
-  <button id="reset-button" style="display:none; margin-top: 10px;">Reiniciar</button>
-  <div id="prize-banner" style="
-    text-align: center; 
-    margin: 20px 0; 
-    font-size: 1.5em; 
-    font-weight: bold; 
-    color: #ffd700; 
-    background: #000; 
-    padding: 10px; 
-    border-radius: 10px;">
-    💰 Prêmio Atual: R$<span id="prize-value">2.00</span> 💰
-  </div>
-  <div id="game-board"></div>
-</section>
+<h2 id="game-description">Prêmios de R$2,00 a R$200,00</h2>
+<p id="game-instructions">Clique no botão para gerar uma cobrança Pix e liberar tentativas!</p>
+<select id="credit-menu">
+  <option value="1" data-prize="2.00" data-attempts="3">3 créditos por R$1 - Prêmio: R$2,00</option>
+  <option value="3" data-prize="10.00" data-attempts="4">4 créditos por R$3 - Prêmio: R$10,00</option>
+  <option value="5" data-prize="50.00" data-attempts="5">5 créditos por R$5 - Prêmio: R$50,00</option>
+  <option value="10" data-prize="200.00" data-attempts="6">6 créditos por R$10 - Prêmio: R$200,00</option>
+</select>
+<button id="pix-button">Gerar Pix</button>
+<div id="timer"></div>
+<div style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
+  <input 
+    type="text" 
+    id="pix-key" 
+    readonly 
+    style="display:none; width: 100%; padding: 5px; font-size: 14px;"
+    title="Chave Pix"
+  />
+  <button 
+    id="copy-pix-key" 
+    style="display:none; padding: 5px 10px; font-size: 14px; cursor: pointer;"
+    title="Copiar chave Pix">
+    📋
+  </button>
+</div>
+<div id="game-liberado" style="display:none;">🎉 Jogo liberado! 🎉</div>
+<div id="win-message" style="display:none;">🎉 Você ganhou! 🎉</div>
+<div id="lose-message" style="display:none;">
+  😞 Você perdeu! O prêmio estava na posição <span id="prize-position"></span>.
+</div>
+<button id="reset-button" style="display:none; margin-top: 10px;">Reiniciar</button>
+<div id="prize-banner" style="
+  text-align: center; 
+  margin: 20px 0; 
+  font-size: 1.5em; 
+  font-weight: bold; 
+  color: #ffd700; 
+  background: #000; 
+  padding: 10px; 
+  border-radius: 10px;">
+  💰 Prêmio Atual: R$<span id="prize-value">2.00</span> 💰
+</div>
+<div id="game-board"></div>
 
 <script>
   const googleAppsScriptURL = "https://script.google.com/macros/s/AKfycbzx14c3vBzTMfJag5EoraiWeSYquV5-_TSDiLLSC2lnoduVPOVtk18llvkO03hhv_VewA/exec";
@@ -153,17 +152,19 @@
   const totalCells = 12;
   let prizeIndex, attempts, clickedCells, credits, paymentId;
 
-  // Atualiza o valor do prêmio no banner quando a opção do menu muda
+  // Atualiza o valor do prêmio e as tentativas no banner quando a opção do menu muda
   creditMenu.addEventListener("change", () => {
     const selectedOption = creditMenu.options[creditMenu.selectedIndex];
     const prizeValue = selectedOption.dataset.prize;
+    const attemptCount = selectedOption.dataset.attempts;
+
     prizeValueSpan.textContent = prizeValue;
+    attempts = parseInt(attemptCount); // Atualiza a quantidade de tentativas com base na opção selecionada
   });
 
   // Função para resetar o jogo
   function resetGame() {
     prizeIndex = Math.floor(Math.random() * totalCells);
-    attempts = 3;
     clickedCells = new Set();
     credits = 0;
     paymentId = null;
@@ -250,7 +251,7 @@
     try {
       const response = await fetch(googleAppsScriptURL, {
         method: "POST",
-        body: JSON.stringify({ action: "generatePix", creditOption: selectedOption }),
+        body: JSON.stringify({ action: "generatePix", creditOption: selectedOption } ),
       });
 
       const data = await response.json();
@@ -293,10 +294,12 @@
   copyPixKeyButton.addEventListener("click", () => {
     pixKeyInput.select();
     document.execCommand("copy");
-    alert("Chave Pix copiada!");
   });
 
+  // Reiniciar o jogo
   resetButton.addEventListener("click", resetGame);
+
+  // Inicializa o jogo ao carregar
   resetGame();
 </script>
 
@@ -387,14 +390,14 @@
         <!-- Novas Seções de Conteúdo -->
         <section id="comoFunciona" class="hidden">
             <h2>Como Funciona</h2>
-            <p>Bem-vindo ao Loto Hack v1! Nosso objetivo é ajudar apostadores do Jogo do Bicho a acertarem suas apostas e, assim, aumentarem suas chances de ganhar dinheiro. Analisamos os resultados anteriores do Jogo do Bicho e, com base em análises estatísticas e probabilidades de acertos, geramos palpites personalizados para você.</p>
+            <p>Bem-vindo ao Acertosclub! Nosso objetivo é ajudar apostadores do Jogo do Bicho a acertarem suas apostas e, assim, aumentarem suas chances de ganhar dinheiro. Analisamos os resultados anteriores do Jogo do Bicho e, com base em análises estatísticas e probabilidades de acertos, geramos palpites personalizados para você.</p>
             <p>Utilizamos algoritmos avançados para identificar padrões e tendências que podem influenciar os resultados futuros. Nossos palpites são projetados para otimizar suas apostas, maximizando suas chances de sucesso de forma responsável e informada.</p>
             <p>Explore as diferentes seções do nosso site para obter mais informações sobre resultados passados, gerar palpites personalizados e jogar de forma mais inteligente.</p>
         </section>
 
         <section id="politicasPrivacidade" class="hidden">
             <h2>Políticas de Privacidade</h2>
-            <p>No Loto Hack v1, valorizamos a sua privacidade e estamos comprometidos em proteger as informações pessoais que você compartilha conosco. Esta Política de Privacidade descreve como coletamos, usamos, armazenamos e protegemos seus dados.</p>
+            <p>No Acertosclub, valorizamos a sua privacidade e estamos comprometidos em proteger as informações pessoais que você compartilha conosco. Esta Política de Privacidade descreve como coletamos, usamos, armazenamos e protegemos seus dados.</p>
             <p><strong>1. Coleta de Informações:</strong> Coletamos informações pessoais fornecidas voluntariamente por você ao se registrar em nosso site, utilizar nossos serviços ou entrar em contato conosco. Isso pode incluir seu nome, e-mail e outras informações relevantes.</p>
             <p><strong>2. Uso das Informações:</strong> As informações coletadas são utilizadas para fornecer e melhorar nossos serviços, personalizar sua experiência, enviar atualizações e comunicações relevantes, além de responder às suas solicitações e perguntas.</p>
             <p><strong>3. Compartilhamento de Informações:</strong> Não compartilhamos suas informações pessoais com terceiros, exceto quando necessário para cumprir a lei, proteger nossos direitos ou fornecer os serviços solicitados por você.</p>
@@ -405,10 +408,10 @@
 
         <section id="termosServico" class="hidden">
             <h2>Termos de Serviço</h2>
-            <p>Bem-vindo ao Loto Hack v1! Ao utilizar nosso site, você concorda com os seguintes Termos de Serviço. Por favor, leia atentamente antes de usar nossos serviços.</p>
-            <p><strong>1. Uso dos Serviços:</strong> Os serviços oferecidos pelo Loto Hack v1 são destinados exclusivamente para fins informativos e de entretenimento. Não garantimos resultados precisos ou ganhos financeiros através de nossas análises e palpites.</p>
-            <p><strong>2. Responsabilidade:</strong> O Loto Hack v1 não se responsabiliza por quaisquer perdas ou danos resultantes do uso de nossos serviços. As apostas devem ser feitas de forma responsável, levando em consideração suas próprias circunstâncias financeiras.</p>
-            <p><strong>3. Propriedade Intelectual:</strong> Todo o conteúdo presente no Loto Hack v1, incluindo textos, gráficos, logos e imagens, é de propriedade exclusiva do site e protegido pelas leis de direitos autorais.</p>
+            <p>Bem-vindo ao Acertosclub! Ao utilizar nosso site, você concorda com os seguintes Termos de Serviço. Por favor, leia atentamente antes de usar nossos serviços.</p>
+            <p><strong>1. Uso dos Serviços:</strong> Os serviços oferecidos pelo Acertosclub são destinados exclusivamente para fins informativos e de entretenimento. Não garantimos resultados precisos ou ganhos financeiros através de nossas análises e palpites.</p>
+            <p><strong>2. Responsabilidade:</strong> O Acertosclub não se responsabiliza por quaisquer perdas ou danos resultantes do uso de nossos serviços. As apostas devem ser feitas de forma responsável, levando em consideração suas próprias circunstâncias financeiras.</p>
+            <p><strong>3. Propriedade Intelectual:</strong> Todo o conteúdo presente no AcertosClub, incluindo textos, gráficos, logos e imagens, é de propriedade exclusiva do site e protegido pelas leis de direitos autorais.</p>
             <p><strong>4. Alterações nos Termos:</strong> Reservamo-nos o direito de modificar estes Termos de Serviço a qualquer momento. Quaisquer alterações serão publicadas nesta página e entrarão em vigor imediatamente após a publicação.</p>
             <p><strong>5. Uso Indevido:</strong> Você concorda em não utilizar nosso site para quaisquer atividades ilegais ou não autorizadas. Qualquer violação destes termos poderá resultar na suspensão ou encerramento de sua conta.</p>
             <p>Ao continuar a utilizar nossos serviços, você confirma que leu, compreendeu e concorda em cumprir estes Termos de Serviço.</p>
@@ -416,10 +419,10 @@
 
         <section id="sobre" class="hidden">
             <h2>Sobre</h2>
-            <p>O Loto Hack v1 foi desenvolvido com o intuito de auxiliar apostadores do Jogo do Bicho a tomarem decisões mais informadas e estratégicas em suas apostas. Nossa equipe de especialistas em estatísticas e análise de dados trabalha continuamente para fornecer palpites baseados em resultados passados e tendências identificadas.</p>
+            <p>O Acertosclub foi desenvolvido com o intuito de auxiliar apostadores do Jogo do Bicho a tomarem decisões mais informadas e estratégicas em suas apostas. Nossa equipe de especialistas em estatísticas e análise de dados trabalha continuamente para fornecer palpites baseados em resultados passados e tendências identificadas.</p>
             <p>Com uma interface amigável e ferramentas avançadas, nosso site permite que você acompanhe os resultados recentes, visualize análises detalhadas e gere palpites personalizados para maximizar suas chances de sucesso.</p>
             <p>Estamos comprometidos com a transparência, segurança e satisfação dos nossos usuários. Acreditamos que, através da combinação de tecnologia e conhecimento, podemos transformar a experiência de apostas, tornando-a mais eficiente e recompensadora.</p>
-            <p>Obrigado por escolher o Loto Hack v1 como seu parceiro de confiança nas apostas do Jogo do Bicho!</p>
+            <p>Obrigado por escolher o Acertosclub como seu parceiro de confiança nas apostas do Jogo do Bicho!</p>
         </section>
     </main>
 
