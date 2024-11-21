@@ -86,21 +86,17 @@
 <section id="minasSection" class="hidden">
 
 
-  <h1>Jogo das Minas com Pix</h1>
+    <h1>Jogo das Minas com Pix</h1>
   <h2>Prêmios de R$2,00 a R$200,00</h2>
   <p>Clique no botão para gerar uma cobrança Pix e liberar tentativas!</p>
-  
   <select id="credit-menu">
-    <option value="1">3 créditos por R$1 (1 real concorre a R$10)</option>
-    <option value="3">4 créditos por R$3 (3 reais concorrem a R$30)</option>
-    <option value="5">5 créditos por R$5 (5 reais concorrem a R$50)</option>
-    <option value="10">6 créditos por R$10 (10 reais concorrem a R$200)</option>
+    <option value="1" data-prize="2.00">3 créditos por R$1 - Prêmio: R$2,00</option>
+    <option value="3" data-prize="10.00">4 créditos por R$3 - Prêmio: R$10,00</option>
+    <option value="5" data-prize="50.00">5 créditos por R$5 - Prêmio: R$50,00</option>
+    <option value="10" data-prize="200.00">6 créditos por R$10 - Prêmio: R$200,00</option>
   </select>
-  
   <button id="pix-button">Gerar Pix</button>
-  
   <div id="timer"></div>
-  
   <div style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
     <input 
       type="text" 
@@ -116,14 +112,23 @@
       📋
     </button>
   </div>
-  
   <div id="game-liberado" style="display:none;">🎉 Jogo liberado! 🎉</div>
   <div id="win-message" style="display:none;">🎉 Você ganhou! 🎉</div>
   <div id="lose-message" style="display:none;">
     😞 Você perdeu! O prêmio estava na posição <span id="prize-position"></span>.
-    <button id="reset-button" style="margin-left: 10px;">Reiniciar</button>
   </div>
-  
+  <button id="reset-button" style="display:none; margin-top: 10px;">Reiniciar</button>
+  <div id="prize-banner" style="
+    text-align: center; 
+    margin: 20px 0; 
+    font-size: 1.5em; 
+    font-weight: bold; 
+    color: #ffd700; 
+    background: #000; 
+    padding: 10px; 
+    border-radius: 10px;">
+    💰 Prêmio Atual: R$<span id="prize-value">2.00</span> 💰
+  </div>
   <div id="game-board"></div>
 </section>
 
@@ -138,12 +143,24 @@
   const winMessage = document.getElementById("win-message");
   const prizePositionDisplay = document.getElementById("prize-position");
   const resetButton = document.getElementById("reset-button");
+  const prizeBanner = document.getElementById("prize-banner");
+  const prizeValueSpan = document.getElementById("prize-value");
+  const creditMenu = document.getElementById("credit-menu");
 
   const totalCells = 12;
   let prizeIndex, attempts, clickedCells, credits, paymentId;
 
+  // Atualiza o valor do prêmio no banner quando a opção do menu muda
+  creditMenu.addEventListener("change", () => {
+    const selectedOption = creditMenu.options[creditMenu.selectedIndex];
+    const prizeValue = selectedOption.dataset.prize;
+    prizeValueSpan.textContent = prizeValue;
+  });
+
+  // Função para resetar o jogo
   function resetGame() {
     prizeIndex = Math.floor(Math.random() * totalCells);
+    attempts = 3;
     clickedCells = new Set();
     credits = 0;
     paymentId = null;
@@ -153,9 +170,12 @@
     gameLiberado.style.display = "none";
     loseMessage.style.display = "none";
     winMessage.style.display = "none";
+    resetButton.style.display = "none";
+    pixButton.style.display = "inline-block";
     createBoard();
   }
 
+  // Função para criar o tabuleiro
   function createBoard() {
     board.innerHTML = "";
     for (let i = 0; i < totalCells; i++) {
@@ -170,16 +190,20 @@
 
       cell.addEventListener("click", function () {
         const index = parseInt(cell.dataset.index);
+
         if (attempts > 0 && !clickedCells.has(index)) {
           clickedCells.add(index);
           attempts--;
           if (index === prizeIndex) {
-            winMessage.style.display = "block";
-            attempts = 0;
-          } else {
-            cell.innerHTML = "❌";
+            do {
+              prizeIndex = Math.floor(Math.random() * totalCells);
+            } while (clickedCells.has(prizeIndex));
           }
-          if (attempts === 0 && winMessage.style.display === "none") {
+
+          cell.classList.add("revealed");
+          cell.innerHTML = "❌";
+
+          if (attempts === 0) {
             revealPrize();
           }
         }
@@ -189,49 +213,31 @@
     }
   }
 
+  // Função para liberar o tabuleiro após o pagamento
   function enableBoard() {
     const cells = document.querySelectorAll(".cell");
     cells.forEach(cell => {
       cell.style.pointerEvents = "auto";
     });
     gameLiberado.style.display = "block";
-    resetButton.style.display = "inline-block";
+    pixButton.style.display = "none"; // Oculta o botão de gerar Pix
   }
 
+  // Função para revelar o prêmio quando o jogador perder
   function revealPrize() {
     const prizeCell = document.querySelector(`[data-index="${prizeIndex}"]`);
     prizeCell.innerHTML = "🏆";
     prizeCell.style.backgroundColor = "#ffd700";
     prizeCell.style.pointerEvents = "none";
+
     prizePositionDisplay.innerText = prizeIndex + 1;
     loseMessage.style.display = "block";
+    resetButton.style.display = "inline-block"; // Mostra o botão de reiniciar
   }
 
+  // Função para gerar o Pix
   pixButton.addEventListener("click", async () => {
-    const selectedOption = document.getElementById("credit-menu").value;
-    let selectedCredits = 0;
-    let selectedAttempts = 0;
-
-    switch (parseInt(selectedOption)) {
-      case 1:
-        selectedCredits = 3;
-        selectedAttempts = 3;
-        break;
-      case 3:
-        selectedCredits = 4;
-        selectedAttempts = 4;
-        break;
-      case 5:
-        selectedCredits = 5;
-        selectedAttempts = 5;
-        break;
-      case 10:
-        selectedCredits = 6;
-        selectedAttempts = 6;
-        break;
-    }
-
-    attempts = selectedAttempts;
+    const selectedOption = creditMenu.value;
 
     try {
       const response = await fetch(googleAppsScriptURL, {
@@ -253,6 +259,7 @@
     }
   });
 
+  // Função para verificar o pagamento
   async function checkPayment() {
     if (!paymentId) return;
 
@@ -274,14 +281,17 @@
     }, 5000);
   }
 
+  // Copiar chave Pix
   copyPixKeyButton.addEventListener("click", () => {
     pixKeyInput.select();
     document.execCommand("copy");
     alert("Chave Pix copiada!");
   });
 
+  // Reiniciar o jogo
   resetButton.addEventListener("click", resetGame);
 
+  // Inicializa o jogo
   resetGame();
 </script>
 
@@ -432,7 +442,7 @@
             <li><strong>💵 R$ 8,00</strong> na Unidade</li>
         </ul>
         <p>🤳🏼Jogue nas principais loterias do Brasil e maximize suas chances de ganhar com nossas cotações imbatíveis!</p>
-        <a href="https://app.acertos.club/pr/fC7hpda9" class="cadastre-se-btn">Cadastre-se aqui</a>
+        <a href="https://app.acertos.club/pr/sbrqjugZ" class="cadastre-se-btn">Cadastre-se aqui</a>
         <br><br><br><p>Ou encontre nosso aplicativo clicando no botão <img src="icons/jogar.png" alt="Jogar" class="icone-jogar"> <strong>Jogar</strong>.</p>
     </div>
 </div>
