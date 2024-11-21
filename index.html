@@ -90,30 +90,17 @@
   <h2>Prêmios de R$2,00 a R$200,00</h2>
   <p>Clique no botão para gerar uma cobrança Pix e liberar tentativas!</p>
   
-  <!-- Informações sobre os prêmios -->
-  <div id="prize-info" style="text-align: center; margin-bottom: 20px; padding: 10px; border: 2px solid #FFD700; background-color: #FFFACD; border-radius: 8px;">
-    <p style="font-size: 18px; font-weight: bold; color: #FF4500;">
-      Prêmio do jogo: R$ <span id="prize-amount">10</span>
-    </p>
-  </div>
-
-  <!-- Menu de opções de crédito -->
-  <div style="margin-bottom: 15px;">
-    <label for="credit-menu" style="font-weight: bold; margin-bottom: 5px; display: block;">Selecione sua opção de crédito:</label>
-    <select id="credit-menu" style="width: 100%; padding: 8px; font-size: 16px; border: 2px solid #FFD700; background-color: #FFFACD; border-radius: 8px; color: #FF4500;">
-      <option value="1">3 créditos por R$1 - Prêmio: R$10</option>
-      <option value="3">4 créditos por R$3 - Prêmio: R$30</option>
-      <option value="5">5 créditos por R$5 - Prêmio: R$50</option>
-      <option value="10">6 créditos por R$10 - Prêmio: R$200</option>
-    </select>
-  </div>
-
-  <button id="pix-button" style="width: 100%; padding: 10px; font-size: 16px; font-weight: bold; color: white; background-color: #20B2AA; border: none; border-radius: 8px; cursor: pointer;">
-    Gerar Pix
-  </button>
-
-  <div id="timer" style="margin-top: 10px; text-align: center;"></div>
-
+  <select id="credit-menu">
+    <option value="1">3 créditos por R$1 (1 real concorre a R$10)</option>
+    <option value="3">4 créditos por R$3 (3 reais concorrem a R$30)</option>
+    <option value="5">5 créditos por R$5 (5 reais concorrem a R$50)</option>
+    <option value="10">6 créditos por R$10 (10 reais concorrem a R$200)</option>
+  </select>
+  
+  <button id="pix-button">Gerar Pix</button>
+  
+  <div id="timer"></div>
+  
   <div style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
     <input 
       type="text" 
@@ -129,14 +116,14 @@
       📋
     </button>
   </div>
-
+  
   <div id="game-liberado" style="display:none;">🎉 Jogo liberado! 🎉</div>
   <div id="win-message" style="display:none;">🎉 Você ganhou! 🎉</div>
   <div id="lose-message" style="display:none;">
     😞 Você perdeu! O prêmio estava na posição <span id="prize-position"></span>.
     <button id="reset-button" style="margin-left: 10px;">Reiniciar</button>
   </div>
-
+  
   <div id="game-board"></div>
 </section>
 
@@ -151,22 +138,12 @@
   const winMessage = document.getElementById("win-message");
   const prizePositionDisplay = document.getElementById("prize-position");
   const resetButton = document.getElementById("reset-button");
-  const prizeInfo = document.getElementById("prize-info");
-  const prizeAmountDisplay = document.getElementById("prize-amount");
 
   const totalCells = 12;
-  let prizeIndex, attempts, clickedCells, credits, paymentId, prizeAmount;
-
-  const creditOptions = {
-    "1": { credits: 3, prize: 10 },
-    "3": { credits: 4, prize: 30 },
-    "5": { credits: 5, prize: 50 },
-    "10": { credits: 6, prize: 200 },
-  };
+  let prizeIndex, attempts, clickedCells, credits, paymentId;
 
   function resetGame() {
     prizeIndex = Math.floor(Math.random() * totalCells);
-    attempts = 0;
     clickedCells = new Set();
     credits = 0;
     paymentId = null;
@@ -176,7 +153,6 @@
     gameLiberado.style.display = "none";
     loseMessage.style.display = "none";
     winMessage.style.display = "none";
-    prizeAmountDisplay.innerText = "0";
     createBoard();
   }
 
@@ -194,19 +170,16 @@
 
       cell.addEventListener("click", function () {
         const index = parseInt(cell.dataset.index);
-
         if (attempts > 0 && !clickedCells.has(index)) {
           clickedCells.add(index);
           attempts--;
           if (index === prizeIndex) {
             winMessage.style.display = "block";
-            return;
+            attempts = 0;
+          } else {
+            cell.innerHTML = "❌";
           }
-
-          cell.classList.add("revealed");
-          cell.innerHTML = "❌";
-
-          if (attempts === 0) {
+          if (attempts === 0 && winMessage.style.display === "none") {
             revealPrize();
           }
         }
@@ -216,35 +189,98 @@
     }
   }
 
+  function enableBoard() {
+    const cells = document.querySelectorAll(".cell");
+    cells.forEach(cell => {
+      cell.style.pointerEvents = "auto";
+    });
+    gameLiberado.style.display = "block";
+    resetButton.style.display = "inline-block";
+  }
+
+  function revealPrize() {
+    const prizeCell = document.querySelector(`[data-index="${prizeIndex}"]`);
+    prizeCell.innerHTML = "🏆";
+    prizeCell.style.backgroundColor = "#ffd700";
+    prizeCell.style.pointerEvents = "none";
+    prizePositionDisplay.innerText = prizeIndex + 1;
+    loseMessage.style.display = "block";
+  }
+
   pixButton.addEventListener("click", async () => {
     const selectedOption = document.getElementById("credit-menu").value;
-    const selectedCredits = creditOptions[selectedOption];
+    let selectedCredits = 0;
+    let selectedAttempts = 0;
 
-    if (selectedCredits) {
-      prizeAmount = selectedCredits.prize;
-      attempts = selectedCredits.credits;
-      prizeAmountDisplay.innerText = prizeAmount;
+    switch (parseInt(selectedOption)) {
+      case 1:
+        selectedCredits = 3;
+        selectedAttempts = 3;
+        break;
+      case 3:
+        selectedCredits = 4;
+        selectedAttempts = 4;
+        break;
+      case 5:
+        selectedCredits = 5;
+        selectedAttempts = 5;
+        break;
+      case 10:
+        selectedCredits = 6;
+        selectedAttempts = 6;
+        break;
+    }
 
+    attempts = selectedAttempts;
+
+    try {
+      const response = await fetch(googleAppsScriptURL, {
+        method: "POST",
+        body: JSON.stringify({ action: "generatePix", creditOption: selectedOption }),
+      });
+
+      const data = await response.json();
+      if (data.pixKey) {
+        pixKeyInput.value = data.pixKey;
+        pixKeyInput.style.display = "block";
+        copyPixKeyButton.style.display = "block";
+        paymentId = data.paymentId;
+      }
+
+      checkPayment();
+    } catch (error) {
+      console.error("Erro ao gerar Pix:", error);
+    }
+  });
+
+  async function checkPayment() {
+    if (!paymentId) return;
+
+    const interval = setInterval(async () => {
       try {
         const response = await fetch(googleAppsScriptURL, {
           method: "POST",
-          body: JSON.stringify({ action: "generatePix", creditOption: selectedOption }),
+          body: JSON.stringify({ action: "verifyPayment", paymentId }),
         });
 
         const data = await response.json();
-        if (data.pixKey) {
-          pixKeyInput.value = data.pixKey;
-          pixKeyInput.style.display = "block";
-          copyPixKeyButton.style.display = "block";
-          paymentId = data.paymentId;
+        if (data.paymentConfirmed) {
+          clearInterval(interval);
+          enableBoard();
         }
-
-        checkPayment();
       } catch (error) {
-        console.error("Erro ao gerar Pix:", error);
+        console.error("Erro ao verificar pagamento:", error);
       }
-    }
+    }, 5000);
+  }
+
+  copyPixKeyButton.addEventListener("click", () => {
+    pixKeyInput.select();
+    document.execCommand("copy");
+    alert("Chave Pix copiada!");
   });
+
+  resetButton.addEventListener("click", resetGame);
 
   resetGame();
 </script>
