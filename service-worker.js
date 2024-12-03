@@ -1,7 +1,7 @@
-const CACHE_NAME = 'loto-hack-cache-v1';
+const CACHE_NAME = 'Acertos.Club';
 const urlsToCache = [
     '/',
-    'https://app.acertos.club/pr/fC7hpda9',
+    'https://app.acertos.club/pr/sbrqjugZ',
     '/index.html',
     '/styles.css',
     '/script.js',
