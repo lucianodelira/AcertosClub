@@ -12,7 +12,7 @@ body, html {
 
 /* Cabeçalho */
 header {
-    background-color: #000000;
+    background-color: #FF8C00;
     color: white;
     padding: 15px;
     position: relative; /* Para posicionamento do menu expandido */
@@ -45,8 +45,8 @@ header h1 {
 
 /* Estilo para o ícone ao lado do título */
 .logo-icon {
-    width: 50px; /* Tamanho do ícone */
-    height: 50px;
+    width: 70px; /* Tamanho do ícone */
+    height: 70px;
     vertical-align: middle;
 }
 
@@ -159,18 +159,18 @@ footer {
 }
 
 .nav-item img {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 5px;
+    width: 45px;
+    height: 45px;
+    margin-bottom: 1px;
 }
 
 .nav-item span {
-    font-size: 12px;
+    font-size: 15px;
 }
 
 .nav-item.active {
     background-color: #555;
-    border-radius: 10px;
+    border-radius: 30px;
 }
 
 @media (max-width: 600px) {
@@ -192,7 +192,7 @@ table {
     border-spacing: 0;
     margin-top: 20px;
     background-color: #ffffff; /* Fundo da tabela */
-    border-radius: 10px; /* Bordas arredondadas */
+    border-radius: 20px; /* Bordas arredondadas */
     overflow: hidden; /* Para aplicar as bordas arredondadas no cabeçalho */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para destaque */
 }
