@@ -1,6 +1,13 @@
-    document.addEventListener('DOMContentLoaded', () => {
-      const body = document.body;
-      body.classList.add('modal-body'); // Adiciona classe exclusiva ao body
+(function() {
+  document.addEventListener('DOMContentLoaded', () => {
+    const body = document.body;
+    const containerId = 'paymentContainer'; // Definir um ID único para o container
+
+    // Verificar se o container já existe para evitar sobrecarga
+    if (!document.getElementById(containerId)) {
+      const containerDiv = document.createElement('div');
+      containerDiv.id = containerId;
+      body.appendChild(containerDiv); // Adiciona o container ao corpo
 
       const modalHTML = `
         <div id="paymentModal">
@@ -10,7 +17,7 @@
               <div id="loadingSpinner"></div>
               <img id="qrCode" alt="QR Code do PIX" width="200" height="200" style="display: none;">
               <div id="pixKeySection" style="display: none;">
-              <h2>Chave PIX</h2><br><br>Valor da transação: R$ 18,00<br><br>Após o pagamento, o sistema de palpites será desbloqueado.<br><br>
+                <h2>Chave PIX</h2><br><br>Valor da transação: R$ 18,00<br><br>Após o pagamento, o sistema de palpites será desbloqueado.<br><br>
                 <div id="pixKey" contenteditable="true"></div>
                 <button id="copyButton">Copiar Chave PIX</button>
               </div>
@@ -21,7 +28,9 @@
         </div>
         <div id="copyNotification">Chave PIX copiada!</div>
       `;
-      body.innerHTML += modalHTML;
+      
+      // Adiciona o conteúdo modal ao container
+      containerDiv.innerHTML += modalHTML;
 
       const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwPXlgv795gYZZIXU8oi56a-yd4iQZ_5BGGYpQP_LK9jJFfBEY83uZ8qluXEDJncBjtKA/exec';
       const PAYMENT_STORAGE_KEY = 'pixPayment';
@@ -191,4 +200,6 @@
           }, 2000); // A mensagem dura 2 segundos.
         });
       }
-    });
+    }
+  });
+})();
