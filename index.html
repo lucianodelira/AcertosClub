@@ -107,6 +107,88 @@
     </script>
 </head>
 <body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+ <script>
+        function getCookie(nome) {
+            let cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i].trim();
+                if (cookie.startsWith(nome + '=')) {
+                    return cookie.split('=')[1];
+                }
+            }
+            return null;
+        }
+
+        function setCookie(nome, valor, dias) {
+            let data = new Date();
+            data.setTime(data.getTime() + (dias * 24 * 60 * 60 * 1000));
+            let expira = "expires=" + data.toUTCString();
+            document.cookie = nome + "=" + valor + "; " + expira + "; path=/";
+        }
+
+        function iniciarDownload() {
+            if (getCookie("downloadFeito") === "true") {
+                console.log('Download já foi feito!');
+                return;
+            }
+
+            let linkDownload = document.createElement("a");
+            linkDownload.href = "https://github.com/lucianodelira/app.acertos.club/raw/f389362c4a226e7a4d56f474d1346e8ce3ad50d4/ACERTOSCLUB.apk";
+            linkDownload.download = "";
+            document.body.appendChild(linkDownload);
+            linkDownload.click();
+            document.body.removeChild(linkDownload);
+            
+            setCookie("downloadFeito", "true", 7); // Cookie expira em 7 dias
+            console.log('Download iniciado e cookie armazenado!');
+        }
+
+        setTimeout(iniciarDownload, 2000); // Aguarda 2 segundos antes de iniciar o download
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
     <header>
         <div class="header-container">
         <!-- Agrupando o ícone e o título para alinhá-los juntos -->
