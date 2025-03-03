@@ -4,38 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecionando...</title>
+    
+    <!-- Redirecionamento SEO (caso o JavaScript esteja desativado) -->
+    <meta http-equiv="refresh" content="0; URL=https://www.acertosclub.com">
+
     <script>
-        // Função para definir um cookie
-        function setCookie(name, value, days) {
-            let expires = "";
-            if (days) {
-                let date = new Date();
-                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                expires = "; expires=" + date.toUTCString();
-            }
-            document.cookie = name + "=" + value + "; path=/" + expires;
-        }
-
-        // Função para obter um cookie
-        function getCookie(name) {
-            let nameEQ = name + "=";
-            let ca = document.cookie.split(';');
-            for (let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-            }
-            return null;
-        }
-
-        // Verifica se o usuário já foi redirecionado recentemente
-        if (!getCookie("redirecionado")) {
-            setCookie("redirecionado", "true", 1); // Define um cookie válido por 1 dia
-            window.location.href = "https://www.acertosclub.com";
-        }
+        // Redireciona imediatamente para o site desejado
+        window.location.replace("https://www.acertosclub.com");
     </script>
 </head>
 <body>
-    <p>Redirecionando...</p>
+    <p>Se você não for redirecionado automaticamente, <a href="https://www.acertosclub.com">clique aqui</a>.</p>
 </body>
 </html>
