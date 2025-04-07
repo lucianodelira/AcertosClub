@@ -807,7 +807,7 @@ window.addEventListener('scroll', fecharMenuAoRolar);
     });
 
 function setActiveIcon(activeIcon) {
-    [minasIcon, minasIcon, resultadoIcon, palpiteIcon, jogarIcon, compartilharIcon].forEach(icon => {
+    [minasIcon, minaIcon, resultadoIcon, palpiteIcon, jogarIcon, compartilharIcon].forEach(icon => {
         icon.classList.remove('active');
     });
     activeIcon.classList.add('active');
