@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const instalarAppLink = document.getElementById('instalarAppLink');
 const minasIcon = document.getElementById('minasIcon');
 const minasSection = document.getElementById('minasSection');
+const minaIcon = document.getElementById('minaIcon');
+const minaSection = document.getElementById('minaSection');
 
     const selecionarNomeSection = document.getElementById('selecionarNome');
     const exibirResultadoSection = document.getElementById('exibirResultado');
@@ -248,11 +250,13 @@ const minasSection = document.getElementById('minasSection');
 
     // Função para definir o ícone ativo
     function setActiveIcon(activeIcon) {
-        [minasIcon, resultadoIcon, palpiteIcon, jogarIcon].forEach(icon => {
+        [minasIcon, minaIcon, resultadoIcon, palpiteIcon, jogarIcon].forEach(icon => {
             icon.classList.remove('active');
         });
         activeIcon.classList.add('active');
     }
+
+
 
     // Função para abrir opções de compartilhamento
     function abrirOpcoesCompartilhamento() {
@@ -312,7 +316,8 @@ function hideAllSections() {
     politicasPrivacidadeSection.classList.add('hidden');
     termosServicoSection.classList.add('hidden');
     sobreSection.classList.add('hidden');
-    minasSection.classList.add('hidden'); // Nova seção Minas
+    minasSection.classList.add('hidden');
+    minaSection.classList.add('hidden'); // Nova seção Mina
 }
 
 
@@ -322,6 +327,14 @@ minasIcon.addEventListener('click', function (event) {
     setActiveIcon(minasIcon);
     showSection(minasSection);
 });
+
+
+minaIcon.addEventListener('click', function (event) {
+    event.preventDefault();
+    setActiveIcon(minaIcon);
+    showSection(minaSection);
+});
+
 
 // Função para exibir as frases nas abas em formato de cards
 function exibirFrasesPalpitePorCategoria(nome) {
@@ -794,11 +807,16 @@ window.addEventListener('scroll', fecharMenuAoRolar);
     });
 
 function setActiveIcon(activeIcon) {
-    [minasIcon, resultadoIcon, palpiteIcon, jogarIcon, compartilharIcon].forEach(icon => {
+    [minasIcon, minasIcon, resultadoIcon, palpiteIcon, jogarIcon, compartilharIcon].forEach(icon => {
         icon.classList.remove('active');
     });
     activeIcon.classList.add('active');
 }
+
+
+
+
+
     // Função de inicialização
     function initializeApp() {
         hideAllSections();
