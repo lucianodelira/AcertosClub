@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <!-- Segurança e boas práticas -->
   <meta charset="UTF-8" />
@@ -11,7 +11,7 @@
   <meta name="referrer" content="no-referrer" />
 
   <!-- SEO e redes sociais -->
-<title>ACERTOS.CLUB - A Banca de Apostas Mais Confiável e Rentável</title>
+<title>ACERTOS.CLUB</title>
 <meta name="description" content="A ACERTOS.CLUB é a melhor plataforma de apostas com segurança, pagamentos instantâneos via Pix e suporte 24/7. Jogue e multiplique seus ganhos!" />
 <meta name="keywords" content="ACERTOS.CLUB, banca ACERTOS.CLUB, banca ACERTOSCLUB, banca de apostas, apostas online, loterias, cassino, palpites esportivos, ganhar dinheiro, apostas seguras, pix rápido, ACERTOS CLUB oficial, ACERTOS.CLUB vip login, ACERTOS.CLUB cadastro, ACERTOS.CLUB esportes, ACERTOS.CLUB cassino, ACERTOS.CLUB futebol, ACERTOS.CLUB resultados, ACERTOS.CLUB apostas seguras, ACERTOS.CLUB pix imediato, ACERTOS.CLUB grupo vip, ACERTOS.CLUB dicas, ACERTOS.CLUB análises, ACERTOS.CLUB estratégias" />
 <meta name="author" content="ACERTOS.CLUB" />
@@ -36,139 +36,1162 @@
 
   <link rel="icon" href="https://www.acertosclub.net/icons/LotoHack.png" />
   <link rel="manifest" href="manifest.json" />
-  <link rel="canonical" href="https://www.acertosclub.net" />
+  <link rel="canonical" href="https://www.acertosclub.com.br" />
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
-      background: #000;
-      font-family: Arial, sans-serif;
-      color: #fff;
-    }
-    .container {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      width: 100%;
-    }
-    .iframe-container {
-      flex: 1;
-      width: 100%;
-    }
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 5px;
-      padding: 5px;
-      background: #000;
-    }
-    .button {
-      background: #006400;
-      color: white;
-      padding: 5px 8px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: bold;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    }
-    .button.banca {
-      background: #000080;
-    }
-    .button.tutorial {
-      background: #673AB7;
-    }
-    .button img {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-    }
-  </style>
+<!-- Favicons -->
+<link rel="icon" href="icons/favicon-32x32.webp" type="image/webp" sizes="32x32">
+<link rel="icon" href="icons/favicon-16x16.webp" type="image/webp" sizes="16x16">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon-180x180.webp">
+<link rel="icon" href="icons/android-chrome-192x192.webp" type="image/webp" sizes="192x192">
+<link rel="icon" href="icons/android-chrome-512x512.webp" type="image/webp" sizes="512x512">
+
+<!-- Google tag -->
+
 <script>
-    (function () {
-      if (
-        window.location.hostname === "acertosclub.net"
-      ) {
-        window.location.replace("https://www.acertosclub.net");
-      }
-    })();
-  </script>
-  
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NZD1KWSSGN');
+</script>
+
+<style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+    body{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;line-height:1.6;}
+    .container{max-width:1200px;margin:0 auto;padding:20px;}
+    nav{position:sticky;top:0;background:rgba(26,26,46,0.9);padding:15px 20px;z-index:10;border-bottom:1px solid #ffd700;display:flex;justify-content:space-between;align-items:center;}
+    .nav-brand{color:#ffd700;font-size:1.5em;font-weight:bold;}
+    .nav-links{display:flex;align-items:center;}
+    nav a{color:#fff;text-decoration:none;margin:0 15px;font-size:1.1em;transition:color .3s;}
+    nav a:hover,nav a.active{color:#ffd700;}
+    .hamburger{display:none;cursor:pointer;font-size:1.5em;color:#fff;}
+    header{position:relative;text-align:center;padding:20px 0;border-radius:15px;margin-bottom:10px;}
+    header img{max-width:300px;height:auto;display:block;margin:0 auto;}
+    .intro{text-align:center;margin-bottom:40px;}
+    .intro h1{font-size:1.8em;color:#ffd700;margin-bottom:20px;}
+    section[id], div[id]{scroll-margin-top:80px;}
+
+    .categories {display: grid;grid-template-columns: repeat(6, 1fr);gap: 5px;margin: 40px 0;width: 100%;}
+    .category-card {background: rgba(255,255,255,0.1);border-radius: 15px;padding: 0;text-align: center;transition: transform .3s, box-shadow .3s;height: 100%;display: flex;flex-direction: column;max-width: none;}
+    .category-card:hover {transform: translateY(-10px);box-shadow: 0 10px 20px rgba(0,0,0,0.2);}
+    .category-card img {width: 100%;height: 200px;object-fit: cover;border-top-left-radius: 15px;border-top-right-radius: 15px;}
+    .category-card .content {padding: 5px 10px;flex: 1;display: flex;flex-direction: column;justify-content: center;gap: 3px;}
+    .category-card h2 {font-size: 1.1em;margin: 0;color: #ffd700;}
+    .category-card p {font-size: 0.75em;margin: 0;}
+    @media (max-width: 768px) {
+        .categories {grid-template-columns: repeat(2, 1fr);gap: 10px;}
+        .category-card img {height: 120px;width: 100%;object-fit: cover;}
+        .category-card .content {padding: 3px 8px;gap: 2px;}
+        nav {position: fixed;top: 0;left: 0;width: 100%;padding: 15px;}
+        .category-card img {aspect-ratio: 1/1;}
+    }
+</style>
+
+<link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
 </head>
 <body>
-  <div class="container">
-    <div class="iframe-container">
-      <iframe allow='clipboard-read; clipboard-write' frameborder='0' height='95%' id='embeddedIframe' loading='lazy' sandbox='allow-scripts allow-same-origin' src='https://app.acertos.club/pr/qcGoRMK0' title='Conteúdo interativo do Acertos Club' width='100%'>
-</iframe>
+<div class="container">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+nav.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #222;
+  padding: 1rem 2rem;
+  color: white;
+  position: relative;
+}
+
+.nav-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #00ffae;
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.hamburger img {
+  width: 30px;
+  height: 30px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: #222;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    text-align: right;
+    padding: 1rem 2rem;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+</style>
+
+    <nav class="navbar">
+  <span class="nav-brand">ACERTOS.CLUB</span>
+  <div class="nav-links" id="navLinks">
+    <a href="#intro">Categorias</a>
+    <a href="#advantages">Vantagens</a>
+    <a href="#benefits">Benefícios</a>
+    <a href="#bet-types">Cotações</a>
+    <a href="#testimonials">Depoimentos</a>
+    <a href="https://app.acertos.club/pr/sbrqjugZ" target="_blank">Cadastre-se</a>
+    <a href="/contato.html">Contato</a>
+  </div>
+  <span class="hamburger" onclick="toggleMenu()">
+    <img src="icons/bars.webp" alt="Menu">
+  </span>
+</nav>
+
+<script>
+  function toggleMenu() {
+    var nav = document.getElementById("navLinks");
+    nav.classList.toggle("show");
+  }
+</script>
+
+    <div id="intro" class="intro">
+        <h1>Sua plataforma premium de apostas online</h1>
+        <section class="categories">
+            <div class="category-card">
+                <img src="icons/cassino.webp" alt="Cassino">
+                <div class="content">
+                    <h2>Cassino</h2>
+                    <p>Jogos emocionantes e prêmios incríveis</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <img src="icons/bingo.webp" alt="Bingo">
+                <div class="content">
+                    <h2>Bingo</h2>
+                    <p>Diversão garantida em tempo real</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <img src="icons/futebol.webp" alt="Futebol">
+                <div class="content">
+                    <h2>Futebol</h2>
+                    <p>Aposte nos seus times favoritos</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <img src="icons/jogo-do-bicho.webp" alt="Jogo do Bicho">
+                <div class="content">
+                    <h2>Jogo do Bicho</h2>
+                    <p>Tradição e modernidade em um só lugar</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <img src="icons/fazendinha.webp" alt="Fazendinha">
+                <div class="content">
+                    <h2>Fazendinha</h2>
+                    <p>Aposte e divirta-se com um toque rural!</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <img src="icons/loterias.webp" alt="Loteria">
+                <div class="content">
+                    <h2>Loterias</h2>
+                    <p>Jogue e ganhe com sorte!</p>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <div class="buttons">
-      <a class="button" href="https://github.com/lucianodelira/app.acertos.club/raw/f389362c4a226e7a4d56f474d1346e8ce3ad50d4/ACERTOSCLUB.apk">📲 .APK </a>
-      <a class="button banca" href="https://www.feiticeiravip.com.br" target="_blank">
-        <img src="https://assets.trivo.bet/images/feiticeira2.png" alt="Ícone" />
-        Parceiro
-      </a>
-      <a class="button tutorial" href="https://www.feiticeiravip.com" target="_blank" rel="noopener noreferrer">
-        📘 Tutorial
-      </a>
-      <a class="button" style="background: #004d00;" href="https://wa.me/5583993209139?text=Ol%C3%A1%20Promotor%2C%20preciso%20de%20ajuda%20!" target="_blank" rel="noopener noreferrer">
-        💬 Suporte
-      </a>
+    <section id="advantages" class="advantages fade-in-section">
+
+
+<style>
+    /* Estilo geral da seção de vantagens */
+    #advantages {
+        padding: 60px 20px;
+        background: linear-gradient(135deg, #16213e, #1a1a2e);
+        color: #fff;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        overflow-x: hidden; /* evita estouro horizontal */
+    }
+
+    #advantages h2 {
+        font-size: 2.5em;
+        margin-bottom: 40px;
+        color: #ffd700;
+        font-weight: bold;
+    }
+
+    .advantages-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    .advantage-item {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 30px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+        height: 100%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .advantage-item:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .advantage-item img {
+        width: 60px;
+        height: auto;
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .advantage-item h3 {
+        font-size: 1.4em;
+        color: #ffd700;
+        margin-bottom: 12px;
+        font-weight: bold;
+    }
+
+    .advantage-item p {
+        font-size: 1em;
+        color: #eee;
+        line-height: 1.5;
+    }
+
+    .fade-in-section {
+        opacity: 0;
+        animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+
+    @media (max-width: 480px) {
+        #advantages {
+            padding: 40px 10px;
+        }
+
+        .advantage-item {
+            padding: 20px;
+        }
+
+        #advantages h2 {
+            font-size: 1.8em;
+        }
+
+        .advantage-item h3 {
+            font-size: 1.2em;
+        }
+
+        .advantage-item img {
+            width: 50px;
+        }
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+        <h2>Vantagens da Banca Acertos Club</h2>
+        <div class="advantages-grid">
+            <div class="advantage-item">
+                <img src="icons/bolt.webp" alt="Rapidez">
+                <h3>Rapidez</h3>
+                <p>Saques e recargas automáticas em segundos.</p>
+            </div>
+            <div class="advantage-item">
+                <img src="icons/shield.webp" alt="Segurança">
+                <h3>Segurança</h3>
+                <p>Dados protegidos com tecnologia avançada.</p>
+            </div>
+            <div class="advantage-item">
+                <img src="icons/mobile.webp" alt="Facilidade">
+                <h3>Facilidade</h3>
+                <p>Cadastro simples e rápido.</p>
+            </div>
+            <div class="advantage-item">
+                <img src="icons/handshake.webp" alt="Confiança">
+                <h3>Confiança</h3>
+                <p>Transparência e suporte dedicado.</p>
+            </div>
+        </div>
+    </section>
+<!-- Botão Flutuante de Cadastro -->
+<a href="https://app.acertos.club/pr/sbrqjugZ" 
+   class="botao-flutuante" 
+   target="_blank" 
+   title="Cadastre-se agora!">🎯 Cadastre-se Agora</a>
+
+<style>
+.botao-flutuante {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #ffcc00;
+  color: #1a1a2e;
+  padding: 20px 35px;
+  border-radius: 60px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  z-index: 1000;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.botao-flutuante:hover {
+  background-color: #e6b800;
+  transform: scale(1.1);
+}
+</style>
+
+
+    <!-- Continuação dos outros blocos... -->
+<!-- O restante do HTML permanece igual -->
+        <section id="benefits" class="benefits fade-in-section">
+
+
+<style>
+    /* Estilo geral da seção de benefícios */
+    #benefits {
+        padding: 60px 20px;
+        background: linear-gradient(135deg, #16213e, #1a1a2e);
+        color: #fff;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    #benefits h2 {
+        font-size: 2.5em;
+        margin-bottom: 40px;
+        color: #ffd700;
+        font-weight: bold;
+    }
+
+    /* Conteúdo principal da seção */
+    .benefits-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 30px;
+    }
+
+    /* Cartões de bônus */
+    .bonus-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .bonus-card {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .bonus-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .bonus-card .percentage {
+        font-size: 2.5em;
+        color: #ffd700;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .bonus-card p {
+        font-size: 1.1em;
+        color: #fff;
+        margin: 5px 0;
+    }
+
+    /* Lista de benefícios */
+    .benefits-list ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 30px;
+    }
+
+    .benefits-list li {
+        font-size: 1.1em;
+        margin-bottom: 15px;
+        color: #fff;
+    }
+
+    /* Notas de benefícios */
+    .benefits-note {
+        font-size: 0.9em;
+        color: #ff6f00;
+        margin-top: 30px;
+    }
+
+    /* Efeito de fade-in para a seção */
+    .fade-in-section {
+        opacity: 0;
+        animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Responsividade */
+    @media (max-width: 1024px) {
+        .bonus-cards {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .bonus-cards {
+            grid-template-columns: 1fr;
+        }
+
+        #benefits h2 {
+            font-size: 2em;
+        }
+
+        .bonus-card {
+            padding: 15px;
+        }
+
+        .benefits-list li {
+            font-size: 1em;
+        }
+    }
+</style>
+
+
+
+
+            <h2>Vantagens de se cadastrar</h2>
+            <div class="benefits-content">
+                <div class="bonus-cards">
+                    <div class="bonus-card">
+                        <span class="percentage">30%</span>
+                        <p>Bônus de boas-vindas</p>
+                        <p>Primeira recarga</p>
+                    </div>
+                    <div class="bonus-card">
+                        <span class="percentage">10%</span>
+                        <p>Recargas subsequentes</p>
+                        <p>Primeira do dia</p>
+                    </div>
+                    <div class="bonus-card">
+                        <span class="percentage">15%</span>
+                        <p>Dias de sorteio da Federal</p>
+                    </div>
+                </div>
+                <div class="benefits-list">
+                    <ul>
+                        <li>Bônus exclusivos para novos usuários</li>
+                        <li>Depósitos e saques rápidos</li>
+                        <li>Suporte 24/7 em português</li>
+                        <li>Aplicativo moderno</li>
+                        <li>Odds competitivas</li>
+                    </ul>
+                </div>
+                <p class="benefits-note">*Bônus aplicáveis à categoria Loteria.</p>
+            </div>
+
+
+
+        </section>
+
+        <section id="bet-types" class="bet-types fade-in-section">
+
+
+<style>
+    /* Estilo geral da seção de tipos de aposta */
+    #bet-types {
+        padding: 60px 20px;
+        background: #232a34;
+        color: #fff;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    #bet-types h2 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        color: #f7b731;
+        font-weight: bold;
+    }
+
+    #bet-types p {
+        font-size: 1.2em;
+        color: #fff;
+        margin-bottom: 40px;
+    }
+
+    /* Estilo para a tabela */
+    .bet-table {
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        border-collapse: collapse;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .bet-table th,
+    .bet-table td {
+        padding: 12px 20px;
+        border: 1px solid #444;
+        text-align: left;
+        font-size: 1.1em;
+    }
+
+    .bet-table th {
+        background-color: #f7b731;
+        color: #333;
+    }
+
+    .bet-table tbody tr:nth-child(even) {
+        background-color: #2c3e50;
+    }
+
+    .bet-table tbody tr:nth-child(odd) {
+        background-color: #34495e;
+    }
+
+    .bet-table td {
+        color: #fff;
+    }
+
+    .bet-table tbody tr:hover {
+        background-color: #f39c12;
+        cursor: pointer;
+    }
+
+    /* Efeito de fade-in para a seção */
+    .fade-in-section {
+        opacity: 0;
+        animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+        .bet-table {
+            font-size: 0.9em;
+        }
+
+        #bet-types h2 {
+            font-size: 2em;
+        }
+
+        #bet-types p {
+            font-size: 1.1em;
+        }
+    }
+</style>
+
+
+
+
+
+
+            <h2>Tipos de Aposta e Valores</h2>
+            <p>Cotações para Jogo do Bicho (Loteria).</p>
+            <table class="bet-table">
+                <thead>
+                    <tr><th>Tipo de Aposta</th><th>Valor da Cotação</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Unidade</td><td>R$ 8,00</td></tr>
+                    <tr><td>Grupo</td><td>R$ 20,00</td></tr>
+                    <tr><td>Dezena</td><td>R$ 80,00</td></tr>
+                    <tr><td>Centena</td><td>R$ 800,00</td></tr>
+                    <tr><td>Milhar</td><td>R$ 8.000,00</td></tr>
+                    <tr><td>Duque GP</td><td>R$ 180,00</td></tr>
+                    <tr><td>Terno GP</td><td>R$ 1.500,00</td></tr>
+                    <tr><td>Quadra GP</td><td>R$ 1.000,00</td></tr>
+                    <tr><td>Quina GP (8/5)</td><td>R$ 1.000,00</td></tr>
+                    <tr><td>Sena GP (10/6)</td><td>R$ 1.000,00</td></tr>
+                    <tr><td>Duque Dez</td><td>R$ 300,00</td></tr>
+                    <tr><td>Terno Dez Seco</td><td>R$ 10.000,00</td></tr>
+                    <tr><td>Terno Dez</td><td>R$ 5.000,00</td></tr>
+                    <tr><td>Palpitação</td><watchdog:R$ 800,00</td></tr>
+                    <tr><td>Passe Vai</td><td>R$ 90,00</td></tr>
+                    <tr><td>Passe Vai Vem</td><td>R$ 45,00</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="footer-cta" class="footer-cta fade-in-section">
+
+
+<style>
+    /* Estilo geral da seção Footer CTA */
+    #footer-cta {
+        background-color: #232a34;
+        color: #fff;
+        padding: 50px 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-top: 5px solid #f7b731;
+    }
+
+    /* Banner da promoção */
+    .footer-banner img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Container de CTA */
+    .footer-cta-container {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .footer-banner-slogan {
+        font-size: 1.5em;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: #f7b731;
+    }
+
+    .footer-btn {
+        background-color: #f7b731;
+        color: #333;
+        padding: 15px 30px;
+        font-size: 1.2em;
+        text-decoration: none;
+        border-radius: 50px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        display: inline-block;
+    }
+
+    .footer-btn:hover {
+        background-color: #f39c12;
+        transform: scale(1.05);
+    }
+
+    .footer-slogan {
+        font-size: 1.3em;
+        margin-top: 15px;
+        color: #ddd;
+    }
+
+    /* Efeito de fade-in para a seção */
+    .fade-in-section {
+        opacity: 0;
+        animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+        .footer-banner img {
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .footer-banner-slogan {
+            font-size: 1.2em;
+        }
+
+        .footer-btn {
+            font-size: 1em;
+            padding: 12px 25px;
+        }
+
+        .footer-slogan {
+            font-size: 1.1em;
+        }
+    }
+</style>
+
+
+            <div class="footer-banner">
+                <img src="icons/banner.webp" alt="Banner Promocional" width="400" height="200" loading="lazy">
+
+            </div>
+            <div class="footer-cta-container">
+                <p class="footer-banner-slogan">tre-se agora e tenha a sorte na palma da sua mão!</p>
+                <a href="https://.acertos.club/pr/sbrqjugZ" class="footer-btn" target="_blank">Cadastre-se Agora</a>
+                <p class="footer-slogan">Transforme sua sorte com o Acertos Club!</p>
+            </div>
+        </section>
+
+
+
+<section id="testimonials" class="footer-content fade-in-section">
+  <style>
+    #testimonials {
+      background-color: #f9f9f9;
+      padding: 40px 20px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    #testimonials h3 {
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 40px;
+      font-weight: bold;
+    }
+
+    .carousel-container {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 20px;
+      scroll-behavior: smooth;
+      padding-bottom: 10px;
+    }
+
+    .testimonial-card {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      flex: 0 0 300px;
+      scroll-snap-align: start;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .rating {
+      font-size: 1.5rem;
+      color: #ffbc00;
+      margin-bottom: 15px;
+    }
+
+    .testimonial-card p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+
+    .testimonial-card span {
+      font-size: 1.1rem;
+      color: #000;
+      font-weight: bold;
+    }
+
+    .review-link {
+      margin-top: 40px;
+    }
+
+    .review-link a {
+      font-size: 1.2rem;
+      color: #0066cc;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px 20px;
+      background-color: #f1f1f1;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .review-link a:hover {
+      background-color: #0066cc;
+      color: #fff;
+    }
+
+    /* Hide scrollbar for webkit browsers */
+    .carousel-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .carousel-container {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+  </style>
+
+  <h3>O que nossos clientes dizem</h3>
+  <div class="carousel-container">
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p>"Mano, a Acertos Club é braba! Fiz o tro rapidão e já peguei aquele bônus de 30%. É zoeira, recomendo pra caramba!"</p>
+                <span>- João Silva</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★☆</div>
+                <p>"Nunca vi site tão de boa pra usar, saquei meu prêmio em dois minutos. É coisa fina, recomendo!"</p>
+                <span>- Mariana Costa</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p>"O suporte me salvou de madrugada, resolveram na hora. Acertos Club é confiável demais!"</p>
+                <span>- Pedro Almeida</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p>"Eu curto pra caramba o Jogo do Bicho aqui, as cotações são top e o  é prático que só."</p>
+                <span>- Carla Souza</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★☆</div>
+                <p>"Fiz uma recarga e caiu na mesma hora, sem frescura. Melhor plataforma que já testei."</p>
+                <span>- Lucas Ferreira</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p>"Esse bônus de 15% nos dias da Federal é massa, sempre aproveito!"</p>
+                <span>- Ana Paula</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p>"Primeira vez apostando online e achei mó legal, tudo simples e direto. Acertos Club é show!"</p>
+                <span>- Rafael Mendes</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★☆</div>
+                <p>"Saquei R$ 800 em menos de 5 minutos, fiquei boba com a rapidez!"</p>
+                <span>- Juliana Lima</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p>"O app é levinho e rápido, jogo em qualquer lugar. É 10, sem erro!"</p>
+                <span>- Gustavo Oliveira</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p>"Ganhar no Jogo do Bicho aqui é fácil, adorei essa parada!"</p>
+                <span>- Beatriz Santos</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★☆</div>
+                <p>"O bônus de boas-vindas me deu um empurrãozinho, valeu cada real!"</p>
+                <span>- Thiago Rocha</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p>"Nunca deu ruim aqui, o suporte é 24h e sempre gente boa. Recomendo!"</p>
+                <span>- Fernanda Dias</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p>"A interface é tão fácil que até minha mãe usou. Acertos Club é top!"</p>
+                <span>- Matheus Correia</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★☆</div>
+                <p>"Fiz um depósito e já tava jogando em 2 minutos, tranquilo demais!"</p>
+                <span>- Larissa Gomes</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p>"As odds são boas e o saque é ligeiro, não tem como não curtir!"</p>
+                <span>- Diego Martins</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p>"Primeira vez que vejo um site de aposta tão honesto e rápido assim. Parabéns!"</p>
+                <span>- Sofia Ribeiro</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★☆</div>
+                <p>"Esse bônus diário de 10% é perfeito pra quem joga todo dia!"</p>
+                <span>- Eduardo Pereira</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p>"Acertos Club é viciante, mas no bom sentido, sabe? Sempre volto!"</p>
+                <span>- Camila Torres</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p>"Saquei pelo Pix e caiu na hora, é coisa de louco, adorei!"</p>
+                <span>- Bruno Castro</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★☆</div>
+                <p>"O app roda direitinho até com internet ruim, achei mó daora!"</p>
+                <span>- Patrícia Lima</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p>"Fiz uma aposta no Jogo do Bicho e ganhei de boa, essa plataforma é braba!"</p>
+                <span>- André Silva</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p>"O suporte me ajudou rapidinho com uma dúvida, atendimento nota 10!"</p>
+                <span>- Jéssica Almeida</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★☆</div>
+                <p>"O bônus de 30% me deu uma moral pra começar, indico pra todo mundo!"</p>
+                <span>- Gabriel Souza</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p>"Nunca pensei que apostar online fosse tão de boa, Acertos Club é foda!"</p>
+                <span>- Letícia Costa</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p>"Saque rápido e sem enrolação, melhor site que já usei!"</p>
+                <span>- Marcelo Oliveira</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★☆</div>
+                <p>"O design é bonito e fácil de mexer, até quem não manja pega rápido."</p>
+                <span>- Vanessa Santos</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p>"Ganhar no Jogo do Bicho aqui é outra vibe, plataforma mil grau!"</p>
+                <span>- Ricardo Mendes</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p>"O bônus da Federal me deu uma sorte danada, ganhei logo de cara!"</p>
+                <span>- Aline Ferreira</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★☆</div>
+                <p>"Tudo funciona direitinho, do tro ao saque. Recomendo de olhos fechados!"</p>
+                <span>- Felipe Rocha</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p>"O app é perfeito pra jogar na rua, rápido e prático!"</p>
+                <span>- Tatiana Dias</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p>"Fiz um depósito pequeno e já lucrei, Acertos Club é zoeira total!"</p>
+                <span>- Vinícius Correia</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★☆</div>
+                <p>"O suporte 24h é um diferencial, sempre me atenderam na hora que precisei."</p>
+                <span>- Laura Gomes</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p>"Os bônus são ótimos e é fácil de usar, não largo esse site por nada!"</p>
+                <span>- Hugo Martins</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p>"Saquei R$ 1.500 e caiu rapidão na conta, é surreal, adorei!"</p>
+                <span>- Renata Ribeiro</span>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <!-- Banner de instalação -->
-  <div id="install-banner" style="display:none; position: fixed; bottom: 20px; left: 20px; right: 20px; background: #111; color: #fff; padding: 16px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.6); z-index: 9999; text-align: center;">
-    <p style="margin: 0 0 10px;">📲 Instale nosso app para acesso mais rápido e fácil!</p>
-    <button onclick="instalarApp()" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer;">Instalar App</button>
-  </div>
-
-  <script>
-    let deferredPrompt;
-
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js')
-        .then(reg => console.log('[SW] Registrado com sucesso!', reg))
-        .catch(err => console.error('[SW] Erro ao registrar:', err));
+<style>
+    .review-link {
+        text-align: center;
+        margin: 40px auto;
+        padding: 16px 24px;
+        background-color: #f4f4f4; /* fundo claro */
+        border: 1px solid #ddd; /* contorno leve */
+        border-radius: 12px;
+        max-width: 400px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      if (!localStorage.getItem('appInstalado')) {
-        document.getElementById('install-banner').style.display = 'block';
-      }
-    });
-
-    function instalarApp() {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            console.log('Usuário aceitou instalar o app');
-            localStorage.setItem('appInstalado', 'true');
-          } else {
-            console.log('Usuário recusou instalar o app');
-          }
-          document.getElementById('install-banner').style.display = 'none';
-          deferredPrompt = null;
-        });
-      } else {
-        alert("Você já instalou ou ainda não pode instalar.");
-      }
+    .review-link a {
+        color: #000; /* texto preto */
+        font-weight: 600;
+        font-size: 15px;
+        text-decoration: none;
+        display: inline-block;
+        transition: color 0.2s ease-in-out;
     }
-  </script>
+
+    .review-link a:hover {
+        color: #333;
+        text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+        .review-link {
+            margin: 24px 16px;
+            padding: 14px 20px;
+        }
+
+        .review-link a {
+            font-size: 14px;
+        }
+    }
+</style>
+
+<div class="review-link">
+    <a href="https://g.page/r/Cd4KjfCG7vFiEBM/review" target="_blank">Comente e deixe a sua avaliação!</a>
+</div>
+
+
+</section>
+
+
+
+<style>
+    footer {
+        background-color: #1a1a1a;
+        color: #ccc;
+        text-align: center;
+        padding: 20px 10px;
+        font-size: 14px;
+        margin-top: 40px;
+        border-top: 2px solid #333;
+    }
+
+    footer a {
+        color: #00c896;
+        text-decoration: none;
+        margin: 0 8px;
+        transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    .floating-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: #00c896;
+        color: white;
+        padding: 14px 24px;
+        border-radius: 50px;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        z-index: 999;
+    }
+
+    .floating-btn:hover {
+        background-color: #00a678;
+        transform: translateY(-3px);
+    }
+
+    @media (max-width: 600px) {
+        .floating-btn {
+            padding: 12px 20px;
+            font-size: 14px;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        footer {
+            font-size: 12px;
+            padding: 15px 5px;
+        }
+    }
+</style>
+
+
+        <footer>
+            <p>© 2025 Acertos Club. <a href="#">Termos de Uso</a> | <a href="#">Política de Privacidade</a></p>
+        </footer>
+    </div>
+
+   
+
+    <script defer src="scripts.js"></script>
+
 </body>
 </html>
