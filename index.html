@@ -1,6 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <!-- Segurança e boas práticas -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
@@ -81,8 +107,36 @@
 </style>
 
 <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
+
+
+
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    #embeddedIframe {
+      border: none;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
 </head>
 <body>
+  <iframe allow='clipboard-read; clipboard-write' frameborder='0' height='95%' id='embeddedIframe' loading='lazy' sandbox='allow-scripts allow-same-origin' src='https://app.acertos.club/pr/sbrqjugZ' title='Conteúdo interativo do Acertos Club' width='100%'>
+</iframe>
+</body>
+</html>
+
+
+
+
+
+
+
 <div class="container">
 
 <style>
@@ -378,33 +432,58 @@ nav.navbar {
             </div>
         </div>
     </section>
-<!-- Botão Flutuante de Cadastro -->
-<a href="https://app.acertos.club/pr/sbrqjugZ" 
-   class="botao-flutuante" 
-   target="_blank" 
-   title="Cadastre-se agora!">🎯 Jogue Agora</a>
+
+
+
+
+
+<div class="aviso" id="avisoCassino">
+  <div>
+    ⚠️ Jogos de cassino só funcionarão corretamente acessando este link.<br>
+    <a href="https://app.acertos.club/pr/sbrqjugZ" target="_blank" style="color: #4FC3F7; text-decoration: underline; font-size: 13px;">https://app.acertos.club/pr/sbrqjugZ</a>
+  </div>
+  <button onclick="document.getElementById('avisoCassino').style.display='none'">Fechar</button>
+</div>
 
 <style>
-.botao-flutuante {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background-color: #ffcc00;
-  color: #1a1a2e;
-  padding: 20px 35px;
-  border-radius: 60px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 20px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-  z-index: 1000;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-.botao-flutuante:hover {
-  background-color: #e6b800;
-  transform: scale(1.1);
-}
+  .aviso {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #111;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    font-size: 14px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    max-width: 90%;
+    text-align: center;
+  }
+  .aviso button {
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+  }
 </style>
+
+
+
+
+
+
+
+
+
 
 
     <!-- Continuação dos outros blocos... -->
@@ -1117,71 +1196,6 @@ nav.navbar {
 </section>
 
 
-
-<style>
-    footer {
-        background-color: #1a1a1a;
-        color: #ccc;
-        text-align: center;
-        padding: 20px 10px;
-        font-size: 14px;
-        margin-top: 40px;
-        border-top: 2px solid #333;
-    }
-
-    footer a {
-        color: #00c896;
-        text-decoration: none;
-        margin: 0 8px;
-        transition: color 0.3s ease;
-    }
-
-    footer a:hover {
-        color: #fff;
-        text-decoration: underline;
-    }
-
-    .floating-btn {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        background-color: #00c896;
-        color: white;
-        padding: 14px 24px;
-        border-radius: 50px;
-        font-size: 16px;
-        font-weight: bold;
-        text-decoration: none;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-        transition: background-color 0.3s ease, transform 0.2s ease;
-        z-index: 999;
-    }
-
-    .floating-btn:hover {
-        background-color: #00a678;
-        transform: translateY(-3px);
-    }
-
-    @media (max-width: 600px) {
-        .floating-btn {
-            padding: 12px 20px;
-            font-size: 14px;
-            bottom: 20px;
-            right: 20px;
-        }
-
-        footer {
-            font-size: 12px;
-            padding: 15px 5px;
-        }
-    }
-</style>
-
-
-        <footer>
-            <p>© 2025 Acertos Club. <a href="#">Termos de Uso</a> | <a href="#">Política de Privacidade</a></p>
-        </footer>
-    </div>
 
    
 
