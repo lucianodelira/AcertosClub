@@ -1214,7 +1214,75 @@ nav.navbar {
 
 
 
+<!-- Banner TigerClub - Mostra 1x por dia -->
+<style>
+  #tiger-banner {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 12px;
+    max-width: 90vw;
+  }
 
+  #tiger-banner img {
+    width: 70vw;
+    max-width: 500px;
+    height: auto;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  }
+
+  #close-tiger-banner {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 30px;
+  }
+</style>
+
+<div id="tiger-banner">
+  <button id="close-tiger-banner">&times;</button>
+  <a href="https://app.tigersclub.vip/pr/cmDAwXiS" target="_blank">
+    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhDfU7KlZtVpdu4yPEuuPbxlsbYhyW7EKKH4uJT934IQ26BKFHoNY-PQkAGoxPW6pFATINR5p73r53zbxnqbc5Wtk3IT2nCiloRbHImtf_pwecqP7B7a8mpw1Aezc-vr0TKQ4X_uidZfN5kcTnftOIqKuq6MN5JnXg6A651tumHvy4_CJi8GrTEE6IDDhQ=s1600" alt="Promoção Tiger Club" />
+  </a>
+</div>
+
+<script>
+  window.addEventListener('load', function () {
+    const lastShown = localStorage.getItem('tigerBannerLastShown');
+    const now = new Date().getTime();
+    const oneDay = 24 * 60 * 60 * 1000; // 24 horas em ms
+
+    if (!lastShown || now - lastShown > oneDay) {
+      // Espera 5 segundos para mostrar
+      setTimeout(() => {
+        document.getElementById("tiger-banner").style.display = "block";
+        // Atualiza a data de exibição
+        localStorage.setItem('tigerBannerLastShown', now.toString());
+      }, 5000);
+    }
+
+    document.getElementById("close-tiger-banner").onclick = function () {
+      document.getElementById("tiger-banner").style.display = "none";
+    };
+  });
+</script>
 
 
 
