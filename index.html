@@ -1216,35 +1216,6 @@ nav.navbar {
 
 
 
-<script>
-  const ANUNCIO_KEY = "anuncio_ultima_exibicao";
-  const HOJE = new Date().toDateString(); // ex: "Thu May 22 2025"
-
-  function mostrarAnuncio() {
-    const anuncio = document.createElement("div");
-    anuncio.innerHTML = `
-      <div style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-                  background: #fff; border: 2px solid #6a3093; padding: 20px;
-                  box-shadow: 0 0 10px rgba(0,0,0,0.3); z-index: 9999;
-                  border-radius: 10px; text-align: center;">
-        <p style="margin: 0 0 10px;">🎁 Baixe nosso app e ganhe bônus diário!</p>
-        <a href="https://app.acertos.club/pr/qcGoRMK0" target="_blank" style="
-            background: linear-gradient(to bottom, #a044ff, #6a3093);
-            color: white; padding: 10px 20px; border-radius: 5px;
-            text-decoration: none;">Baixar agora</a>
-        <br><br>
-        <button onclick="this.parentElement.remove()">Fechar</button>
-      </div>
-    `;
-    document.body.appendChild(anuncio);
-  }
-
-  const ultimaData = localStorage.getItem(ANUNCIO_KEY);
-  if (ultimaData !== HOJE) {
-    mostrarAnuncio();
-    localStorage.setItem(ANUNCIO_KEY, HOJE);
-  }
-</script>
 
 
 
