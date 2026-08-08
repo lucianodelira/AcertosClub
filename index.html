@@ -1214,75 +1214,517 @@ nav.navbar {
 
 
 
-<!-- Banner TigerClub - Mostra 1x por dia -->
-<style>
-  #tiger-banner {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 10px;
-    border-radius: 12px;
-    max-width: 90vw;
-  }
+<!-- BANNER WHATSAPP - GRUPO DE PALPITES -->
 
-  #tiger-banner img {
-    width: 70vw;
-    max-width: 500px;
-    height: auto;
-    cursor: pointer;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-  }
+<!-- ========================================= -->
 
-  #close-tiger-banner {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    background: #ff4444;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 18px;
-    line-height: 30px;
-  }
-</style>
+<div id="whats-banner">
 
-<div id="tiger-banner">
-  <button id="close-tiger-banner">&times;</button>
-  <a href="https://app.tigersclub.vip/pr/cmDAwXiS" target="_blank">
-    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhDfU7KlZtVpdu4yPEuuPbxlsbYhyW7EKKH4uJT934IQ26BKFHoNY-PQkAGoxPW6pFATINR5p73r53zbxnqbc5Wtk3IT2nCiloRbHImtf_pwecqP7B7a8mpw1Aezc-vr0TKQ4X_uidZfN5kcTnftOIqKuq6MN5JnXg6A651tumHvy4_CJi8GrTEE6IDDhQ=s1600" alt="Promoção Tiger Club" />
+  <!-- BOTÃO FECHAR -->
+
+<button
+onclick="fecharWhatsBanner()"
+class="whats-fechar"
+aria-label="Fechar banner"
+
+>
+
+×
+
+
+  </button>
+
+  <!-- ÍCONE WHATSAPP -->
+
+  <div class="whats-icon-top">
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+      alt="WhatsApp"
+    >
+  </div>
+
+  <!-- TÍTULO -->
+
+  <h2>🔥 ENTRE NO GRUPO DE PALPITES!</h2>
+
+  <p>
+    Receba palpites, informações e novidades<br>
+    diretamente no seu WhatsApp.
+  </p>
+
+  <!-- BOTÃO WHATSAPP -->
+
+<a
+href="https://chat.whatsapp.com/BiiU4p1jYXIFUF1ybsZQr5"
+target="_blank"
+rel="noopener noreferrer"
+onclick="fecharWhatsBanner()"
+class="whats-button"
+
+>
+
+```
+<img
+  src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+  alt="WhatsApp"
+>
+
+<span>
+  PARTICIPAR DO GRUPO
+</span>
+```
+
   </a>
+
+  <!-- RODAPÉ -->
+
+  <div class="whats-rodape">
+    ✅ Grupo gratuito • Entre agora!
+  </div>
+
 </div>
 
+<style>
+
+/* ========================================= */
+/* BANNER */
+/* ========================================= */
+
+#whats-banner {
+
+  position: fixed;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 380px;
+  max-width: calc(100% - 30px);
+
+  padding: 35px 25px 28px;
+
+  background:
+    radial-gradient(
+      circle at top,
+      #123c28 0%,
+      #111 45%,
+      #080808 100%
+    );
+
+  border: 2px solid #25D366;
+
+  border-radius: 22px;
+
+  text-align: center;
+
+  font-family: Arial, sans-serif;
+
+  z-index: 999999;
+
+  box-shadow:
+    0 0 15px rgba(37,211,102,.7),
+    0 0 40px rgba(37,211,102,.4),
+    0 15px 50px rgba(0,0,0,.8);
+
+  animation:
+    bannerEntrada .5s ease,
+    bannerBrilho 2s infinite;
+
+}
+
+
+/* ========================================= */
+/* ANIMAÇÃO DE ENTRADA */
+/* ========================================= */
+
+@keyframes bannerEntrada {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translate(-50%, -45%)
+      scale(.8);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+
+  }
+
+}
+
+
+/* ========================================= */
+/* ANIMAÇÃO DE BRILHO */
+/* ========================================= */
+
+@keyframes bannerBrilho {
+
+  0%, 100% {
+
+    box-shadow:
+      0 0 15px rgba(37,211,102,.6),
+      0 0 40px rgba(37,211,102,.3),
+      0 15px 50px rgba(0,0,0,.8);
+
+  }
+
+  50% {
+
+    box-shadow:
+      0 0 25px rgba(37,211,102,1),
+      0 0 60px rgba(37,211,102,.55),
+      0 15px 50px rgba(0,0,0,.8);
+
+  }
+
+}
+
+
+/* ========================================= */
+/* BOTÃO FECHAR */
+/* ========================================= */
+
+.whats-fechar {
+
+  position: absolute;
+
+  top: 10px;
+  right: 10px;
+
+  width: 35px;
+  height: 35px;
+
+  border: 0;
+
+  border-radius: 50%;
+
+  background: #ff1744;
+
+  color: #fff;
+
+  font-size: 25px;
+
+  font-weight: bold;
+
+  line-height: 35px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 0 12px rgba(255,23,68,.6);
+
+  transition: .2s;
+
+}
+
+.whats-fechar:hover {
+
+  transform: scale(1.12);
+
+  background: #ff0033;
+
+}
+
+
+/* ========================================= */
+/* ÍCONE SUPERIOR */
+/* ========================================= */
+
+.whats-icon-top {
+
+  width: 75px;
+  height: 75px;
+
+  margin: 0 auto 12px;
+
+  border-radius: 50%;
+
+  background: #25D366;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  box-shadow:
+    0 0 15px #25D366,
+    0 0 35px rgba(37,211,102,.6);
+
+  animation: iconPulse 1.5s infinite;
+
+}
+
+
+.whats-icon-top img {
+
+  width: 48px;
+  height: 48px;
+
+}
+
+
+/* ========================================= */
+/* PULSO DO ÍCONE */
+/* ========================================= */
+
+@keyframes iconPulse {
+
+  0%, 100% {
+
+    transform: scale(1);
+
+  }
+
+  50% {
+
+    transform: scale(1.08);
+
+  }
+
+}
+
+
+/* ========================================= */
+/* TÍTULO */
+/* ========================================= */
+
+#whats-banner h2 {
+
+  margin: 8px 0 10px;
+
+  color: #25D366;
+
+  font-size: 23px;
+
+  font-weight: 900;
+
+  font-family: Arial, sans-serif;
+
+  text-shadow:
+    0 0 8px rgba(37,211,102,.8);
+
+}
+
+
+/* ========================================= */
+/* TEXTO */
+/* ========================================= */
+
+#whats-banner p {
+
+  margin: 0;
+
+  color: #ddd;
+
+  font-size: 14px;
+
+  line-height: 1.5;
+
+}
+
+
+/* ========================================= */
+/* BOTÃO WHATSAPP */
+/* ========================================= */
+
+.whats-button {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  margin-top: 20px;
+
+  padding: 16px 15px;
+
+  background:
+    linear-gradient(
+      45deg,
+      #00c853,
+      #25D366,
+      #00e676
+    );
+
+  color: #fff;
+
+  border-radius: 14px;
+
+  text-decoration: none;
+
+  font-size: 17px;
+
+  font-weight: 900;
+
+  letter-spacing: .3px;
+
+  box-shadow:
+    0 5px 20px rgba(37,211,102,.5);
+
+  animation: buttonPulse 1.8s infinite;
+
+  transition: .2s;
+
+}
+
+
+.whats-button img {
+
+  width: 30px;
+  height: 30px;
+
+}
+
+
+.whats-button:hover {
+
+  transform: scale(1.04);
+
+  box-shadow:
+    0 0 20px rgba(37,211,102,1),
+    0 0 40px rgba(37,211,102,.5);
+
+}
+
+
+/* ========================================= */
+/* PULSO DO BOTÃO */
+/* ========================================= */
+
+@keyframes buttonPulse {
+
+  0%, 100% {
+
+    transform: scale(1);
+
+  }
+
+  50% {
+
+    transform: scale(1.025);
+
+  }
+
+}
+
+
+/* ========================================= */
+/* RODAPÉ */
+/* ========================================= */
+
+.whats-rodape {
+
+  margin-top: 14px;
+
+  color: #25D366;
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+}
+
+
+/* ========================================= */
+/* CELULAR */
+/* ========================================= */
+
+@media (max-width: 480px) {
+
+  #whats-banner {
+
+    width: 330px;
+
+    padding: 30px 20px 23px;
+
+  }
+
+  #whats-banner h2 {
+
+    font-size: 20px;
+
+  }
+
+  #whats-banner p {
+
+    font-size: 13px;
+
+  }
+
+  .whats-button {
+
+    font-size: 15px;
+
+    padding: 15px 10px;
+
+  }
+
+}
+
+
+/* ========================================= */
+/* ANIMAÇÃO DE SAÍDA */
+/* ========================================= */
+
+.whats-banner-fechando {
+
+  opacity: 0 !important;
+
+  transform:
+    translate(-50%, -50%)
+    scale(.8) !important;
+
+  transition: .25s ease;
+
+}
+
+</style>
+
 <script>
-  window.addEventListener('load', function () {
-    const lastShown = localStorage.getItem('tigerBannerLastShown');
-    const now = new Date().getTime();
-    const oneDay = 24 * 60 * 60 * 1000; // 24 horas em ms
 
-    if (!lastShown || now - lastShown > oneDay) {
-      // Espera 5 segundos para mostrar
-      setTimeout(() => {
-        document.getElementById("tiger-banner").style.display = "block";
-        // Atualiza a data de exibição
-        localStorage.setItem('tigerBannerLastShown', now.toString());
-      }, 5000);
-    }
+/* ========================================= */
+/* FECHAR BANNER */
+/* ========================================= */
 
-    document.getElementById("close-tiger-banner").onclick = function () {
-      document.getElementById("tiger-banner").style.display = "none";
-    };
-  });
+function fecharWhatsBanner() {
+
+  const banner =
+    document.getElementById("whats-banner");
+
+  if (!banner) return;
+
+  banner.classList.add(
+    "whats-banner-fechando"
+  );
+
+  setTimeout(function() {
+
+    banner.remove();
+
+  }, 250);
+
+}
+
 </script>
+
 
 
 
